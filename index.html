@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>darkTi的小轮子</title>
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        :root{
+            --button-height: 32px;
+            --font-size: 14px;
+            --button-bg: white;
+            --button-active-bg: #eee;
+            --border-radius: 4px;
+            --color: #333;
+            --border-color: #999;
+            --border-color-hover: #666;
+        }
+        #app{
+            font-size: var(--font-size);
+        }
+    </style>
+    <style>
+        .g-button{
+            height: var(--button-height);
+            font-size: var(--font-size);
+            padding: 0 1em;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--button-bg);
+        }
+        .g-button:hover{   /*鼠标漂浮在按钮上 */
+            border-color: var(--border-color-hover);
+        } 
+        .g-button:active{  /*鼠标按下按钮还没松开时 */
+            background-color: var(--button-active-bg);
+        }
+        .g-button:focus{   /*获得光标焦点时，主要用在文本框输入文字时使用 */
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+   <div id="app">
+       <g-button></g-button>
+   </div>
+    
+
+<script src="./node_modules/vue/dist/vue.min.js"></script>
+<script src="./button.js"></script>
+<script>
+    new Vue({
+        el: '#app'
+    })
+
+</script>
+</body>
+</html>
