@@ -1,0 +1,23 @@
+{
+  "name": "darkti-gulu",
+  "version": "1.0.0",
+  "description": "UI框架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangdoudou86/darkti-gulu.git"
+  },
+  "keywords": [
+    "vue",
+    "ui"
+  ],
+  "author": "darkTi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangdoudou86/darkti-gulu/issues"
+  },
+  "homepage": "https://github.com/wangdoudou86/darkti-gulu#readme"
+}
