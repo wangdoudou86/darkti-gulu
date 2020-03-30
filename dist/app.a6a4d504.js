@@ -12450,7 +12450,12 @@ var _default = {
     icon: {},
     iconPosition: {
       type: String,
-      default: 'left'
+      default: 'left',
+      validator: function validator(value) {
+        // if(value !== 'left' && value !== 'right') return false
+        // return true
+        return value === 'left' || value === 'right';
+      }
     }
   }
 };
