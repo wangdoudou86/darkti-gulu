@@ -10,7 +10,6 @@ export default {
             let name = node.nodeName.toLowerCase()
             if(name !== 'button'){
                 console.warn(`g-button-group 的子元素应该全是 g-button，不应该是${name}`);
-                
             }
         }
     }
@@ -22,7 +21,9 @@ export default {
         vertical-align: middle;
         > .g-button{
             border-radius: 0;
-            margin-left: -1px; //解决border重合问题
+            &:not(:first-child){
+                margin-left: -1px; //解决border重合问题
+            }
             &:first-child{
                 border-top-left-radius: var(--border-radius);
                 border-bottom-left-radius: var(--border-radius);
