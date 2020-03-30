@@ -22,16 +22,21 @@
 }
 .g-button > .icon {
   order: 1;
-  margin-right: 0.1em;
+  margin-right: 0.2em;
 }
 .g-button > .content {
   order: 2;
 }
 .g-button.icon-right > .icon {
   order: 2;
-  margin-left: 0.1em;
+  margin-left: 0.2em;
 }
 .g-button.icon-right > .content {
   order: 1;
+}
+
+.g-icon {
+  width: 1em;
+  height: 1em;
 }
 
