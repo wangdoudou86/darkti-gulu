@@ -8,6 +8,6 @@ export default {
     props:['name']
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .g-icon { width: 1em; height: 1em; }
 </style>

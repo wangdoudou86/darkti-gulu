@@ -1,9 +1,7 @@
 <template>
     <button class="g-button" :class="{[`icon-${iconPosition}`]: true}">
-        <!-- <svg v-if="icon" class="icon" aria-hidden="true">
-            <use :xlink:href="`#i-${icon}`"></use>
-        </svg> -->
-        <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
+        <g-icon class="icon" v-if="icon && !loading" :name="icon"></g-icon>
+        <g-icon class="loading icon" v-if="loading"  name="loading"></g-icon>
         <div class="content">
             <slot></slot>
         </div>
@@ -14,6 +12,10 @@ export default {
     // props:['icon','iconPosition']
     props:{
         icon:{},
+        loading:{
+            type: Boolean,
+            default: false
+        }, // 控制loading的显隐
         iconPosition:{
             type: String,
             default: 'left',
@@ -26,7 +28,15 @@ export default {
     }
 }
 </script>
-<style lang="less">
+<style lang="scss">
+    @keyframes spin{
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+    }
     .g-button{
             height: var(--button-height);
             font-size: var(--font-size);
@@ -52,6 +62,9 @@ export default {
             &.icon-right{ 
                 > .icon{ order: 2; margin-left: .2em;} 
                 > .content{ order: 1; } 
+            }
+            > .loading{
+                animation: spin 1s linear infinite;
             }
         }
         

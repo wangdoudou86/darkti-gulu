@@ -20,7 +20,7 @@
             --border-radius: 4px;
             --color: #333;
             --border-color: #999;
-            --border-color-hover: #666;
+            --border-color-hover: red;
         }
 
         #app {
@@ -31,28 +31,33 @@
             font-size: var(--font-size);
         }
     </style>
-    <!-- <style type="text/css">
-        .icon {
-            width: 1em;
-            height: 1em;
-        }
-    </style> -->
 </head>
 
 <body>
     <div id="app">
-        <g-button >
+        <g-button :loading="true">
             按钮
         </g-button>
-        <g-button icon="settings" icon-position="left">
+        <g-button icon="settings" :loading="true" icon-position="left">
             按钮
         </g-button>
         <g-button icon="settings" icon-position="right">
             按钮
         </g-button>
+       <g-button-group>
+        <g-button icon="left">
+            上一页
+        </g-button>
+        <g-button>
+            更多
+        </g-button>
+        <g-button icon="right" icon-position="right">
+            下一页
+        </g-button>
+       </g-button-group>
     </div>
     <script src="./src/app.js"></script>
-    <script src="//at.alicdn.com/t/font_1723271_w9zy3mki87.js"></script>
+    <script src="//at.alicdn.com/t/font_1723271_o8ydrhba97p.js"></script>
 </body>
 
 </html>
