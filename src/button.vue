@@ -12,7 +12,7 @@
 export default {
     // props:['icon','iconPosition']
     props:{
-        icon:{},
+        icon:{type: String},
         loading:{
             type: Boolean,
             default: false
