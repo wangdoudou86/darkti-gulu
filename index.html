@@ -20,7 +20,7 @@
             --border-radius: 4px;
             --color: #333;
             --border-color: #999;
-            --border-color-hover: red;
+            --border-color-hover: #666;
         }
 
         #app {
@@ -35,7 +35,7 @@
 
 <body>
     <div id="app">
-        <g-button :loading="true">
+        <g-button :loading="loading1" @click="loading1 = !loading1">
             按钮
         </g-button>
         <g-button icon="settings" :loading="true" icon-position="left">
