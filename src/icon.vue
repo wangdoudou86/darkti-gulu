@@ -6,6 +6,7 @@
 <script>
 import './iconfont.js'
 export default {
+    name: 'GuluIcon',
     props:['name']
 }
 </script>
