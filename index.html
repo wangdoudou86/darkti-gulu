@@ -39,12 +39,16 @@
 <body>
     <div id="app">
         <div class="box">
-            <g-input value="逗逗"  ></g-input>
+            <g-input value="逗逗"  @change="inputChange"></g-input>
             <g-input disabled></g-input>
             <g-input value="只可读" readonly></g-input>
         </div>
         <div class="box">
             <g-input  error="你要写英文"></g-input>
+        </div>
+        <div class="box">
+            <g-input v-model='message'></g-input>
+            <span>{{message}}</span>
         </div>
         <div class="box">
             <g-button :loading="loading1" @click="loading1 = !loading1">
