@@ -1,5 +1,5 @@
 <template>
-   <div class="col" :class="[span && `col-${span}`]">
+   <div class="col" :class="[span && `col-${span}`, offset && `offset-${offset}`]">
        <slot></slot>
    </div>
 </template>
@@ -9,6 +9,9 @@ export default {
     props:{
         span: {
             type: [Number, String]  //意味这两种格式都可以
+        },
+        offset: {
+            type: [Number, String]
         }
     }
 }
@@ -23,6 +26,12 @@ export default {
     @for $n from 1 through 24 {  //$n就是传进来的span
       &.#{$class-prefix}#{$n} {
         width: ($n / 24) * 100%;  //乘100%就会变成百分数
+      }
+    }
+    $class-prefix: offset-;   
+    @for $n from 1 through 24 {  
+      &.#{$class-prefix}#{$n} {
+        margin-left: ($n / 24) * 100%;  
       }
     }
 }
