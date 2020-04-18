@@ -1,6 +1,6 @@
 <template>
-   <div class="col" :class="[span && `col-${span}`, offset && `offset-${offset}`]" 
-   :style="{paddingLeft: gutter + 'px',paddingRight: gutter + 'px'}">
+   <div class="col" :class="colClasses" 
+   :style="colStyle">
        <slot></slot>
    </div>
 </template>
@@ -18,6 +18,16 @@ export default {
     data(){
       return {
         gutter: 0
+      }
+    },
+    computed: {
+      colClasses(){
+        let { span, offset } = this
+        return [span && `col-${span}`, offset && `offset-${offset}`]
+      },
+      colStyle(){
+        let { gutter } = this
+        return {paddingLeft: gutter + 'px',paddingRight: gutter + 'px'}
       }
     }
 }

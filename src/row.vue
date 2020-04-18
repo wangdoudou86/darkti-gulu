@@ -1,5 +1,5 @@
 <template>
-   <div class="row" :style="{marginLeft: -gutter + 'px',marginRight: -gutter + 'px'}">
+   <div class="row" :style="rowStyle">
        <slot></slot>
    </div>
 </template>
@@ -16,6 +16,12 @@ export default {
         that.$children.forEach((children)=>{
             children.gutter = that.gutter
         })
+    },
+    computed:{
+        rowStyle(){
+            let { gutter } = this
+            return { marginLeft: -gutter + 'px', marginRight: -gutter + 'px' }
+        }
     }
 }
 </script>
