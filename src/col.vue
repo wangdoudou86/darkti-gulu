@@ -1,5 +1,6 @@
 <template>
-   <div class="col" :class="[span && `col-${span}`, offset && `offset-${offset}`]">
+   <div class="col" :class="[span && `col-${span}`, offset && `offset-${offset}`]" 
+   :style="{paddingLeft: gutter + 'px',paddingRight: gutter + 'px'}">
        <slot></slot>
    </div>
 </template>
@@ -13,6 +14,11 @@ export default {
         offset: {
             type: [Number, String]
         }
+    },
+    data(){
+      return {
+        gutter: 0
+      }
     }
 }
 </script>
@@ -20,8 +26,9 @@ export default {
 .col{
     height: 100px;
     width: 50%;
-    background-color: grey;
-    border: 1px solid green;
+    // background-color: grey;
+    // border: 1px solid pink;
+    // padding: 0 10px;
     $class-prefix: col-;   //定义class的前缀
     @for $n from 1 through 24 {  //$n就是传进来的span
       &.#{$class-prefix}#{$n} {

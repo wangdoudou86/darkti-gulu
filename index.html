@@ -38,17 +38,23 @@
 
 <body>
     <div id="app">
-        <g-row class="row">
-            <g-col span='4'></g-col>
-            <g-col span='15' offset='5'></g-col>
-        </g-row>
-        <g-row class="row">
-            <g-col></g-col>
-            <g-col></g-col>
-            <g-col></g-col>
-            <g-col></g-col>
-        </g-row>
-        
+        <div style="border: 1px solid black;">
+            <g-row>
+                <g-col span='4'>1</g-col>
+                <g-col span='15' offset='5'>2</g-col>
+            </g-row>
+            <g-row gutter="20">
+                <g-col>1</g-col>
+                <g-col>2</g-col>
+                <g-col>3</g-col>
+                <g-col>4</g-col>
+            </g-row>
+            <g-row>
+                <g-col span="6">1</g-col>
+                <g-col span="3">2</g-col>
+                <g-col span="6" offset="9">3</g-col>
+            </g-row>
+        </div>
         <!-- <div class="box">
             <g-input value="逗逗"  @change="inputChange"></g-input>
             <g-input disabled></g-input>
