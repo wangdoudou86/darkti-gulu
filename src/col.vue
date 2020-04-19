@@ -34,11 +34,6 @@ export default {
 </script>
 <style lang="scss">
 .col{
-    height: 100px;
-    width: 50%;
-    // background-color: grey;
-    // border: 1px solid pink;
-    // padding: 0 10px;
     $class-prefix: col-;   //定义class的前缀
     @for $n from 1 through 24 {  //$n就是传进来的span
       &.#{$class-prefix}#{$n} {
