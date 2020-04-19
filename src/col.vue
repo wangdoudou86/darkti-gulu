@@ -5,6 +5,14 @@
    </div>
 </template>
 <script>
+let validator = (value)=>{
+  let keys = Object.keys(value)   
+  let valid = true 
+  keys.forEach((key)=>{
+    if(!['span','offset'].includes(key)) valid = false
+  })
+  return valid
+}
 export default {
     name: 'GuluCol',
     props:{
@@ -14,17 +22,10 @@ export default {
         offset: {
             type: [Number, String]
         },
-        phone: {
-          type: Object,
-          validator(value){
-            let keys = Object.keys(value)   //phone可以是['span'],['offset'],['span','offset'],所以需要循环验证
-            let valid = true 
-            keys.forEach((key)=>{
-              if(!['span','offset'].includes(key)) valid = false
-            })
-            return valid
-          }
-        }
+        ipad: { type: Object, validator },
+        narrowPc: { type: Object, validator },
+        pc: { type: Object, validator },
+        widePc: { type: Object, validator }
     },
     data(){
       return {
@@ -33,14 +34,29 @@ export default {
     },
     computed: {
       colClasses(){
-        let { span, offset, phone } = this
-        let phoneClass = []
-        if(phone) phoneClass = [phone.span && `phone-span-${phone.span}`, phone.offset && `phone-offset-${phone.offset}`]
-        return [span && `col-${span}`, offset && `offset-${offset}`, ...phoneClass]
+        let { span, offset, ipad, narrowPc, pc, widePc } = this
+        let createClasses = this.createClasses
+        return [
+          span && `col-${span}`, 
+          offset && `offset-${offset}`, 
+          ...createClasses(ipad,'ipad'),
+          ...createClasses(narrowPc,'narrow-pc'),
+          ...createClasses(pc,'pc'),
+          ...createClasses(widePc,'wide-pc')
+          ]
       },
       colStyle(){
         let { gutter } = this
         return {paddingLeft: gutter + 'px',paddingRight: gutter + 'px'}
+      }
+    },
+    methods:{
+      createClasses(obj,str){
+        if(!obj) return [] //这里必须返回空数组
+        let classArray = []
+        if(obj.span) classArray.push(`${str}-span-${obj.span}`)
+        if(obj.offset) classArray.push(`${str}-offset-${obj.offset}`)
+        return classArray
       }
     }
 }
@@ -59,14 +75,60 @@ export default {
         margin-left: ($n / 24) * 100%;  
       }
     }
-    @media (max-width: 576px){
-      $class-prefix: phone-span-;   
+    //ipad
+    @media (min-width: 577px){
+      $class-prefix: ipad-span-;   
       @for $n from 1 through 24 {  
         &.#{$class-prefix}#{$n} {
           width: ($n / 24) * 100%;  
         }
       }
-      $class-prefix: phone-offset-;   
+      $class-prefix: ipad-offset-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;  
+        }
+      }
+    }
+    //narrow-pc
+    @media (min-width: 769px){
+      $class-prefix: narrow-pc-span-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;  
+        }
+      }
+      $class-prefix: narrow-pc-offset-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;  
+        }
+      }
+    }
+    //pc
+    @media (min-width: 923px){
+      $class-prefix: pc-span-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;  
+        }
+      }
+      $class-prefix: pc-offset-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;  
+        }
+      }
+    }
+    //wide-pc
+    @media (min-width: 1201px){
+      $class-prefix: wide-pc-span-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;  
+        }
+      }
+      $class-prefix: wide-pc-offset-;   
       @for $n from 1 through 24 {  
         &.#{$class-prefix}#{$n} {
           margin-left: ($n / 24) * 100%;  
