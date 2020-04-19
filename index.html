@@ -34,6 +34,12 @@
             margin: 20px;
         }
     </style>
+    <style>
+        .colBox{
+            border: 1px solid yellow;
+            height: 50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,11 +50,11 @@
                 <g-col span='15' offset='5'>2</g-col>
             </g-row>
 
-            <g-row gutter="20" >
-                <g-col>1</g-col>
-                <g-col>2</g-col>
-                <g-col>3</g-col>
-                <g-col>4</g-col>
+            <g-row>
+                <g-col class='colBox' span='6' :phone="{span:'10'}">1</g-col>
+                <g-col class='colBox' span='6' :phone="{span:'10',offset:'4'}">2</g-col>
+                <g-col class='colBox' span='6' :phone="{span:'10'}">3</g-col>
+                <g-col class='colBox' span='6' :phone="{span:'10',offset:'4'}">4</g-col>
             </g-row>
             
             <g-row>

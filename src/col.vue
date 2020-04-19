@@ -13,6 +13,17 @@ export default {
         },
         offset: {
             type: [Number, String]
+        },
+        phone: {
+          type: Object,
+          validator(value){
+            let keys = Object.keys(value)   //phone可以是['span'],['offset'],['span','offset'],所以需要循环验证
+            let valid = true 
+            keys.forEach((key)=>{
+              if(!['span','offset'].includes(key)) valid = false
+            })
+            return valid
+          }
         }
     },
     data(){
@@ -22,8 +33,10 @@ export default {
     },
     computed: {
       colClasses(){
-        let { span, offset } = this
-        return [span && `col-${span}`, offset && `offset-${offset}`]
+        let { span, offset, phone } = this
+        let phoneClass = []
+        if(phone) phoneClass = [phone.span && `phone-span-${phone.span}`, phone.offset && `phone-offset-${phone.offset}`]
+        return [span && `col-${span}`, offset && `offset-${offset}`, ...phoneClass]
       },
       colStyle(){
         let { gutter } = this
@@ -44,6 +57,20 @@ export default {
     @for $n from 1 through 24 {  
       &.#{$class-prefix}#{$n} {
         margin-left: ($n / 24) * 100%;  
+      }
+    }
+    @media (max-width: 576px){
+      $class-prefix: phone-span-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          width: ($n / 24) * 100%;  
+        }
+      }
+      $class-prefix: phone-offset-;   
+      @for $n from 1 through 24 {  
+        &.#{$class-prefix}#{$n} {
+          margin-left: ($n / 24) * 100%;  
+        }
       }
     }
 }
