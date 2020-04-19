@@ -10,7 +10,7 @@ export default {
         gutter:{
             type: [Number, String]
         },
-        align: {
+        justify: {
             type: String,
             validator(value){
                 return ['left', 'center', 'right'].includes(value)   //这个值必须是这三个中的一个
@@ -29,8 +29,8 @@ export default {
             return { marginLeft: -gutter + 'px', marginRight: -gutter + 'px' }
         },
         rowClass(){
-            let { align } = this
-            return [align && `align-${align}`]
+            let { justify } = this
+            return [justify && `justify-${justify}`]
         }
 
     }
@@ -39,13 +39,13 @@ export default {
 <style lang="scss">
 .row{
     display: flex;
-    &.align-left{
+    &.justify-left{
         justify-content: flex-start;
     }
-    &.align-center{
+    &.justify-center{
         justify-content: center;
     }
-    &.align-right{
+    &.justify-right{
         justify-content: flex-end;
     }
 }
