@@ -23,9 +23,9 @@
             --border-color-hover: #666;
         }
 
-        #app {
+        /* #app {
             margin: 20px;
-        }
+        } */
 
         body {
             font-size: var(--font-size);
@@ -42,12 +42,31 @@
         .colCon{
             border: 1px solid green;
         }
+        .layout{
+            height: 100vh;
+        }
+        .header{
+            height: 100px;
+            border: 1px solid #333;
+        }
+        .content{
+            border: 1px solid #999;
+        }
+        .footer{
+            height: 50px;
+            border: 1px solid #666;
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
-        <div style="border: 1px solid black;">
+        <g-layout class="layout">
+            <g-header class="header">header</g-header>
+            <g-content class="content">content</g-content>
+            <g-footer class="footer">footer</g-footer>
+        </g-layout>
+        <!-- <div style="border: 1px solid black;">
             <g-row justify="right">
                 <g-col span='4'>1</g-col>
                 <g-col span='15' offset='5'>2</g-col>
@@ -134,7 +153,7 @@
                 下一页
             </g-button>
            </g-button-group>
-        </div>
+        </div> -->
     </div>
     <script src="./src/app.js"></script>
 </body>
