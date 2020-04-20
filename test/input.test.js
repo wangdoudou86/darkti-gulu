@@ -1,9 +1,9 @@
 const expect = chai.expect;
- import Vue from 'vue'
- import Input from '../src/input'
+import Vue from 'vue'
+import Input from '../src/input'
 
- Vue.config.productionTip = false
- Vue.config.devtools = false
+Vue.config.productionTip = false
+Vue.config.devtools = false
 
 describe('Input',() => {
     it('input存在', () => {

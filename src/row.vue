@@ -26,7 +26,7 @@ export default {
     computed:{
         rowStyle(){
             let { gutter } = this
-            return { marginLeft: -gutter + 'px', marginRight: -gutter + 'px' }
+            return { marginLeft: -gutter / 2 + 'px', marginRight: -gutter / 2 + 'px' }
         },
         rowClass(){
             let { justify } = this

@@ -47,7 +47,7 @@ export default {
       },
       colStyle(){
         let { gutter } = this
-        return {paddingLeft: gutter + 'px',paddingRight: gutter + 'px'}
+        return {paddingLeft: gutter / 2 + 'px',paddingRight: gutter / 2 + 'px'}
       }
     },
     methods:{
