@@ -18,9 +18,9 @@ describe('Input',() => {
         })
         it('可以设置value', () => {
             vm = new Constructor({
-            propsData: {
-                value: 'nct'
-            }
+                propsData: {
+                    value: 'nct'
+                }
             }).$mount()
             const inputElement = vm.$el.querySelector('input')
             expect(inputElement.value).to.equal('nct')
