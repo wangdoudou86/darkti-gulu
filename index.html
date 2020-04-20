@@ -44,10 +44,15 @@
         }
         .layout{
             height: 100vh;
+            border: 1px solid orange;
         }
         .header{
             height: 100px;
             border: 1px solid #333;
+        }
+        .sider{
+            width: 200px;
+            border: 1px solid green;
         }
         .content{
             border: 1px solid #999;
@@ -56,15 +61,21 @@
             height: 50px;
             border: 1px solid #666;
         }
+        .main{
+            
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
         <g-layout class="layout">
-            <g-header class="header">header</g-header>
-            <g-content class="content">content</g-content>
-            <g-footer class="footer">footer</g-footer>
+            <g-sider class="sider">sider</g-sider>
+            <g-layout class="main">
+                <g-header class="header">header</g-header>
+                <g-content class="content">content</g-content>
+                <g-footer class="footer">footer</g-footer>
+            </g-layout>
         </g-layout>
         <!-- <div style="border: 1px solid black;">
             <g-row justify="right">
