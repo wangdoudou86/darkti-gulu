@@ -61,21 +61,21 @@
             height: 50px;
             border: 1px solid #666;
         }
-        .main{
-            
-        }
+        
     </style>
 </head>
 
 <body>
     <div id="app">
         <g-layout class="layout">
-            <g-sider class="sider">sider</g-sider>
-            <g-layout class="main">
-                <g-header class="header">header</g-header>
-                <g-content class="content">content</g-content>
-                <g-footer class="footer">footer</g-footer>
+            <g-layout>
+                <g-sider class="sider">sider</g-sider>
+                <g-layout class="main">
+                    <g-header class="header">header</g-header>
+                    <g-content class="content">content</g-content>
+                </g-layout>
             </g-layout>
+            <g-footer class="footer">footer</g-footer>
         </g-layout>
         <!-- <div style="border: 1px solid black;">
             <g-row justify="right">
