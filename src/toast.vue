@@ -2,7 +2,7 @@
     <div class="g-toast" ref="toast">
         <slot></slot>
         <div class="line" ref="line" v-if="!autoClose"></div>
-        <span class="closeText" v-if="!autoClose">{{closeButton.text}}</span>
+        <span class="closeText" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
         
     </div>    
 </template>
@@ -23,17 +23,17 @@ export default {
             type: Object,
             default(){   // 一定注意type是对象或数组，default必须写成函数形式
                 return {
-                    text: '关闭关闭关闭关闭关闭',
-                    callback: function(){
-
-                    }
+                    text: '关闭',
+                    callback: undefined
                 }
             }
+        },
+        enableHtml: {
+            type: Boolean,
+            default: false
         }
     },
     mounted(){
-        
-        
         if(this.autoClose){
             setTimeout(()=>{
                 this.close()
@@ -45,9 +45,17 @@ export default {
         }
     },
     methods: {
+        //销毁toast实例
         close(){
             this.$el.remove()
             this.$destroy()
+        },
+        //点击关系按钮
+        onClickClose(){
+            this.close()
+            if(this.closeButton && typeof this.closeButton.callback === 'function' ){
+                this.closeButton.callback(this)  //一般都会把自己这个实例传出去，用户用不用在于他自己
+            }
         }
     }
 }

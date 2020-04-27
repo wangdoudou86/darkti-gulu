@@ -10,7 +10,6 @@ import Header from './header.vue';
 import Sider from './sider.vue';
 import Content from './content.vue';
 import Footer from './footer.vue';
-// import Toast from './toast.vue';
 import ToastPlugin from './plugin'
 
 Vue.component('g-button',Button)
@@ -24,7 +23,6 @@ Vue.component('g-header',Header)
 Vue.component('g-sider',Sider)
 Vue.component('g-content',Content)
 Vue.component('g-footer',Footer)
-// Vue.component('g-toast',Toast)
 Vue.use(ToastPlugin)
 
 new Vue({
@@ -39,7 +37,13 @@ new Vue({
         },
         channelToast(){
             this.$toast('我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦',{
-                autoClose: false
+                autoClose: false,
+                closeButton: {
+                    text: '确定',
+                    callback: function(e){
+                        console.log(e,'ekkkk');
+                    }
+                }
             })
         }
     }
