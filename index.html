@@ -67,7 +67,11 @@
 
 <body>
     <div id="app">
-        <button @click="channelToast()">点我</button>
+        <button @click="autoToast()">3秒后自动关闭</button>
+        <button @click="toastTop()">从上方弹出</button>
+        <button @click="toastBottom()">从下方弹出</button>
+        <button @click="toastMiddle()">从中间弹出</button>
+
         <!-- <g-layout class="layout">
             <g-layout>
                 <g-sider class="sider">sider</g-sider>

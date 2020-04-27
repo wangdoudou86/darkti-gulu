@@ -35,7 +35,20 @@ new Vue({
         inputChange(e){
             console.log(e,'eeeee')
         },
-        channelToast(){
+        autoToast(){
+            this.$toast('3秒后关闭')
+        },
+        
+        toastTop(){
+            this.channelToast('top')
+        },
+        toastBottom(){
+            this.channelToast('bottom')
+        },
+        toastMiddle(){
+            this.channelToast('middle')
+        },
+        channelToast(position){
             this.$toast(`这次数字为${parseInt(Math.random() * 100)}`,{
                 autoClose: false,
                 closeButton: {
@@ -44,7 +57,7 @@ new Vue({
                         console.log('关闭了')
                     }
                 },
-                position:'bottom'
+                position
             })
         }
     }

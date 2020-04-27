@@ -7,7 +7,6 @@
             </div>
             <div class="line" ref="line" v-if="!autoClose"></div>
             <span class="closeText" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
-            
         </div>    
     </div>
 </template>
@@ -69,7 +68,7 @@ export default {
             this.$emit('close')
             this.$destroy()
         },
-        //点击关系按钮
+        //点击关闭按钮
         onClickClose(){
             this.close()
             if(this.closeButton && typeof this.closeButton.callback === 'function' ){
@@ -83,21 +82,55 @@ export default {
 $font-size: 14px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 $min-toast-height: 40px;
+$animation-duration: 300ms;
+
+@keyframes up-slide{
+    0%{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes down-slide{
+    0%{
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes middle-fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+// 做两个div，外面的居中，里面的做动画
 .wrapper{
     position: fixed;
     left: 50%;
-    
     &.position-top{
         top: 0;
         transform: translateX(-50%);
         .g-toast{
             border-top-left-radius: 0;
             border-top-right-radius: 0;
+            animation: up-slide $animation-duration;
         }
     }
     &.position-middle{
         top: 50%;
         transform: translate(-50%,-50%);
+        .g-toast{
+            animation: middle-fade $animation-duration;
+        }
     }
     &.position-bottom{
         bottom: 0;
@@ -105,6 +138,7 @@ $min-toast-height: 40px;
         .g-toast{
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
+            animation: down-slide $animation-duration;
         }
         
     }
