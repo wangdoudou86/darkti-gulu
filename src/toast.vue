@@ -1,6 +1,9 @@
 <template>
     <div class="g-toast" ref="toast">
-        <slot></slot>
+        <div class="message">
+            <slot v-if="!enableHtml"></slot>  
+            <div v-else v-html="$slots.default"></div>
+        </div>
         <div class="line" ref="line" v-if="!autoClose"></div>
         <span class="closeText" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
         
@@ -79,7 +82,9 @@ $min-toast-height: 40px;
     line-height: 1.8;
     display: flex;
     align-items: center;
-
+    .message{
+        padding: 8px 0;
+    }
     
     .line{
         height: 100%;

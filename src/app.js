@@ -36,7 +36,7 @@ new Vue({
             console.log(e,'eeeee')
         },
         channelToast(){
-            this.$toast('我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦我是出来啦',{
+            this.$toast('<p>hi<em>我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了</em></p>',{
                 autoClose: false,
                 closeButton: {
                     text: '确定',
