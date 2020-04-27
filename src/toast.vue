@@ -1,13 +1,15 @@
 <template>
-    <div class="g-toast" ref="toast">
-        <div class="message">
-            <slot v-if="!enableHtml"></slot>  
-            <div v-else v-html="$slots.default"></div>
-        </div>
-        <div class="line" ref="line" v-if="!autoClose"></div>
-        <span class="closeText" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
-        
-    </div>    
+    <div class="wrapper" :class="positionClass">
+        <div class="g-toast" ref="toast">
+            <div class="message">
+                <slot v-if="!enableHtml"></slot>  
+                <div v-else v-html="$slots.default"></div>
+            </div>
+            <div class="line" ref="line" v-if="!autoClose"></div>
+            <span class="closeText" v-if="!autoClose" @click="onClickClose">{{closeButton.text}}</span>
+            
+        </div>    
+    </div>
 </template>
 <script>
 
@@ -34,6 +36,13 @@ export default {
         enableHtml: {
             type: Boolean,
             default: false
+        },
+        position: {
+            type: String,
+            default: 'top',
+            validator(value){
+                return ['top', 'bottom', 'middle'].indexOf(value) !== -1
+            }
         }
     },
     mounted(){
@@ -45,6 +54,12 @@ export default {
             this.$nextTick(()=>{
                 this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
             })
+        }
+    },
+    computed: {
+        positionClass(){
+            let position = this.position
+            return [position && `position-${position}`]
         }
     },
     methods: {
@@ -67,32 +82,55 @@ export default {
 $font-size: 14px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 $min-toast-height: 40px;
-.g-toast{
+.wrapper{
     position: fixed;
-    top: 0;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: $font-size;
-    color: white;
-    border-radius: 4px;
-    background-color: $toast-bg;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.50);
-    padding: 0 16px;
-    min-height: $min-toast-height;
-    line-height: 1.8;
-    display: flex;
-    align-items: center;
-    .message{
-        padding: 8px 0;
-    }
     
-    .line{
-        height: 100%;
-        border: 1px solid red;
-        margin: 0 16px;
+    &.position-top{
+        top: 0;
+        transform: translateX(-50%);
+        .g-toast{
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
     }
-    .closeText{
-        flex-shrink: 0;
+    &.position-middle{
+        top: 50%;
+        transform: translate(-50%,-50%);
     }
+    &.position-bottom{
+        bottom: 0;
+        transform: translateX(-50%);
+        .g-toast{
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        
+    }
+    .g-toast{
+        font-size: $font-size;
+        color: white;
+        border-radius: 4px;
+        background-color: $toast-bg;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.50);
+        padding: 0 16px;
+        min-height: $min-toast-height;
+        line-height: 1.8;
+        display: flex;
+        align-items: center;
+        .message{
+            padding: 8px 0;
+        }
+        
+        .line{
+            height: 100%;
+            border: 1px solid #555;
+            margin: 0 16px;
+        }
+        .closeText{
+            flex-shrink: 0;
+        }
+    }
+
 }
 </style>

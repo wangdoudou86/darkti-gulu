@@ -36,14 +36,15 @@ new Vue({
             console.log(e,'eeeee')
         },
         channelToast(){
-            this.$toast('<p>hi<em>我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了我出来了</em></p>',{
+            this.$toast('我出来了我出来了我出来了我出来了我出来了',{
                 autoClose: false,
                 closeButton: {
                     text: '确定',
                     callback: function(e){
                         console.log(e,'ekkkk');
                     }
-                }
+                },
+                position:'bottom'
             })
         }
     }
