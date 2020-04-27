@@ -49,7 +49,7 @@ new Vue({
             this.channelToast('middle')
         },
         channelToast(position){
-            this.$toast(`这次数字为${parseInt(Math.random() * 100)}`,{
+            this.$toast(`这次数字为${parseInt(Math.random() * 100)}出来了`,{
                 autoClose: false,
                 closeButton: {
                     text: '确定',

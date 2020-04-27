@@ -16,12 +16,11 @@ export default {
     name: 'GuluToast',
     props:{
         autoClose: {
-            type: Boolean,
-            default: true
-        },
-        closeDelay: {
-            type: Number,
-            default: 3
+            type: [Boolean, Number],
+            default: 3,
+            validator(value){
+                return value === false || typeof value === 'number'
+            }
         },
         closeButton: {
             type: Object,
@@ -45,11 +44,12 @@ export default {
         }
     },
     mounted(){
+        //自动关闭时不需要有那条线了
         if(this.autoClose){
             setTimeout(()=>{
                 this.close()
-            }, this.closeDelay * 1000)
-        }else{
+            }, this.autoClose * 1000)
+        }else{  
             this.$nextTick(()=>{
                 this.$refs.line.style.height = `${this.$refs.toast.getBoundingClientRect().height}px`
             })
@@ -164,6 +164,7 @@ $animation-duration: 300ms;
         }
         .closeText{
             flex-shrink: 0;
+            cursor: pointer;
         }
     }
 
