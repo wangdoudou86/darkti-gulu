@@ -6,7 +6,6 @@ export default {
             let toast = new Constructor({
                 propsData: toastOptions
             })
-            console.log(toast.$slots,'toast.$slot');
             toast.$slots.default = message 
             toast.$mount()  //slot要放在mount之前
             document.body.appendChild(toast.$el)
