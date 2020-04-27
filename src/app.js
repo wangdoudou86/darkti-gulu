@@ -36,12 +36,12 @@ new Vue({
             console.log(e,'eeeee')
         },
         channelToast(){
-            this.$toast('我出来了我出来了我出来了我出来了我出来了',{
+            this.$toast(`这次数字为${parseInt(Math.random() * 100)}`,{
                 autoClose: false,
                 closeButton: {
                     text: '确定',
-                    callback: function(e){
-                        console.log(e,'ekkkk');
+                    callback: function(){
+                        console.log('关闭了')
                     }
                 },
                 position:'bottom'

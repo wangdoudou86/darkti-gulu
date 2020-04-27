@@ -66,6 +66,7 @@ export default {
         //销毁toast实例
         close(){
             this.$el.remove()
+            this.$emit('close')
             this.$destroy()
         },
         //点击关系按钮
