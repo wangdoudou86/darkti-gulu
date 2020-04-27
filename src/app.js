@@ -38,7 +38,9 @@ new Vue({
             console.log(e,'eeeee')
         },
         channelToast(){
-            this.$toast('我是toast啦')
+            this.$toast('我是出来啦',{
+                autoClose: false
+            })
         }
     }
 })
