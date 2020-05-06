@@ -10,7 +10,14 @@ import Header from './header.vue';
 import Sider from './sider.vue';
 import Content from './content.vue';
 import Footer from './footer.vue';
-import ToastPlugin from './plugin'
+import ToastPlugin from './plugin';
+import Tabs from './tabs';
+import TabsHead from './tabs-head';
+import TabsItem from './tabs-item';
+import TabsBody from './tabs-body';
+import TabsPane from './tabs-pane';
+
+
 
 Vue.component('d-button',Button)
 Vue.component('d-icon',Icon)
@@ -24,12 +31,18 @@ Vue.component('d-sider',Sider)
 Vue.component('d-content',Content)
 Vue.component('d-footer',Footer)
 Vue.use(ToastPlugin)
+Vue.component('d-tabs',Tabs)
+Vue.component('d-tabs-head',TabsHead)
+Vue.component('d-tabs-item',TabsItem)
+Vue.component('d-tabs-body',TabsBody)
+Vue.component('d-tabs-pane',TabsPane)
 
 new Vue({
     el: '#app',
     data:{
         loading1: false,
-        message: 'nct'
+        message: 'nct',
+        selectedItem: 'society'
     },
     methods: {
         inputChange(e){
