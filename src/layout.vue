@@ -1,11 +1,11 @@
 <template>
-    <div class="g-layout" :class="layoutClass">
+    <div class="d-layout" :class="layoutClass">
         <slot></slot>
     </div>
 </template>
 <script>
 export default {
-    name: 'GuluLayout',
+    name: 'DarkLayout',
     data(){
         return {
             layoutClass: {
@@ -15,7 +15,7 @@ export default {
     },
     mounted(){
         this.$children.forEach((vm)=>{
-            if(vm.$options.name === 'GuluSider'){
+            if(vm.$options.name === 'DarkSider'){
                 this.layoutClass.hasSider = true
             }
         })
@@ -23,7 +23,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.g-layout{
+.d-layout{
     flex-grow: 1;
     display: flex;
     flex-direction: column;

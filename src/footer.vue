@@ -1,13 +1,13 @@
 <template>
-    <div class="g-footer">
+    <div class="d-footer">
         <slot></slot>
     </div>
 </template>
 <script>
 export default {
-    name: 'GuluFooter'
+    name: 'DarkFooter'
 }
 </script>
 <style lang="scss" scoped>
-.g-footer{}
+.d-footer{}
 </style>

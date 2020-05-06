@@ -13,15 +13,15 @@ describe('Row',() => {
 
     describe('props',() => {
         it('可以设置gutter', (done) => {
-            Vue.component('g-row', Row) 
-            Vue.component('g-col', Col)
+            Vue.component('d-row', Row) 
+            Vue.component('d-col', Col)
             const div = document.createElement('div') 
             document.body.appendChild(div)
             div.innerHTML = `
-                <g-row gutter="20">
-                    <g-col span="12"></g-col>
-                    <g-col span="12"></g-col>
-                </g-row>
+                <d-row gutter="20">
+                    <d-col span="12"></d-col>
+                    <d-col span="12"></d-col>
+                </d-row>
             `
             let vm = new Vue({
                 el: div

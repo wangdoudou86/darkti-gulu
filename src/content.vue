@@ -1,15 +1,15 @@
 <template>
-    <div class="g-content">
+    <div class="d-content">
         <slot></slot>
     </div>
 </template>
 <script>
 export default {
-    name: 'GuluContent'
+    name: 'DarkContent'
 }
 </script>
 <style lang="scss" scoped>
-.g-content{
+.d-content{
     flex-grow: 1;
 }
 </style>

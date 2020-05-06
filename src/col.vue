@@ -14,7 +14,7 @@ let validator = (value)=>{
   return valid
 }
 export default {
-    name: 'GuluCol',
+    name: 'DarkCol',
     props:{
         span: {
             type: [Number, String]  //意味这两种格式都可以

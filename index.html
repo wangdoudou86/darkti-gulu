@@ -72,103 +72,103 @@
         <button @click="toastBottom()">从下方弹出</button>
         <button @click="toastMiddle()">从中间弹出</button>
 
-        <!-- <g-layout class="layout">
-            <g-layout>
-                <g-sider class="sider">sider</g-sider>
-                <g-layout class="main">
-                    <g-header class="header">header</g-header>
-                    <g-content class="content"></g-content>
-                </g-layout>
-            </g-layout>
-            <g-footer class="footer">footer</g-footer>
-        </g-layout> -->
+        <!-- <d-layout class="layout">
+            <d-layout>
+                <d-sider class="sider">sider</d-sider>
+                <d-layout class="main">
+                    <d-header class="header">header</d-header>
+                    <d-content class="content"></d-content>
+                </d-layout>
+            </d-layout>
+            <d-footer class="footer">footer</d-footer>
+        </d-layout> -->
         <!-- <div style="border: 1px solid black;">
-            <g-row justify="right">
-                <g-col span='4'>1</g-col>
-                <g-col span='15' offset='5'>2</g-col>
-            </g-row>
+            <d-row justify="right">
+                <d-col span='4'>1</d-col>
+                <d-col span='15' offset='5'>2</d-col>
+            </d-row>
 
-            <g-row>
-                <g-col class='colBox' span='6' :ipad="{span:'10'}">1</g-col>
-                <g-col class='colBox' span='6' :ipad="{span:'10',offset:'4'}">2</g-col>
-                <g-col class='colBox' span='6' :ipad="{span:'10'}">3</g-col>
-                <g-col class='colBox' span='6' :ipad="{span:'10',offset:'4'}">4</g-col>
-            </g-row>
+            <d-row>
+                <d-col class='colBox' span='6' :ipad="{span:'10'}">1</d-col>
+                <d-col class='colBox' span='6' :ipad="{span:'10',offset:'4'}">2</d-col>
+                <d-col class='colBox' span='6' :ipad="{span:'10'}">3</d-col>
+                <d-col class='colBox' span='6' :ipad="{span:'10',offset:'4'}">4</d-col>
+            </d-row>
             
-            <g-row>
-                <g-col span="6">1</g-col>
-                <g-col span="3">2</g-col>
-                <g-col span="6" offset="9">3</g-col>
-            </g-row>
+            <d-row>
+                <d-col span="6">1</d-col>
+                <d-col span="3">2</d-col>
+                <d-col span="6" offset="9">3</d-col>
+            </d-row>
 
-            <g-row>
-                <g-col span='12'>
-                    <g-row justify='center'>
-                        <g-col>a</g-col>
-                        <g-col>b</g-col>
-                        <g-col>c</g-col>
-                    </g-row>
-                </g-col>
-                <g-col span='12'>
-                    <g-row justify='right'>
-                        <g-col>n</g-col>
-                        <g-col>c</g-col>
-                        <g-col>t</g-col>
-                    </g-row>
-                </g-col>
-            </g-row>
+            <d-row>
+                <d-col span='12'>
+                    <d-row justify='center'>
+                        <d-col>a</d-col>
+                        <d-col>b</d-col>
+                        <d-col>c</d-col>
+                    </d-row>
+                </d-col>
+                <d-col span='12'>
+                    <d-row justify='right'>
+                        <d-col>n</d-col>
+                        <d-col>c</d-col>
+                        <d-col>t</d-col>
+                    </d-row>
+                </d-col>
+            </d-row>
 
-            <g-row>
-                <g-col class='colBox' span='24' :ipad="{span:'12'}" :pc="{span:10}">aaa</g-col>
-                <g-col class='colBox' span='24' :ipad="{span:'12'}" :pc="{span:6,offset:8}">bbb</g-col>
-            </g-row>
+            <d-row>
+                <d-col class='colBox' span='24' :ipad="{span:'12'}" :pc="{span:10}">aaa</d-col>
+                <d-col class='colBox' span='24' :ipad="{span:'12'}" :pc="{span:6,offset:8}">bbb</d-col>
+            </d-row>
 
-            <g-row gutter="20" justify='right'>
-                <g-col>
+            <d-row gutter="20" justify='right'>
+                <d-col>
                     <div class="colCon">nnn</div>
-                </g-col>
-                <g-col>
+                </d-col>
+                <d-col>
                     <div class="colCon">ccc</div>
-                </g-col>
-                <g-col>
+                </d-col>
+                <d-col>
                     <div class="colCon">ttt</div>
-                </g-col>
-            </g-row>
+                </d-col>
+            </d-row>
         </div>
 
         <div class="box">
-            <g-input value="逗逗"  @change="inputChange"></g-input>
-            <g-input disabled></g-input>
-            <g-input value="只可读" readonly></g-input>
+            <d-input value="逗逗"  @change="inputChange"></d-input>
+            <d-input disabled></d-input>
+            <d-input value="只可读" readonly></d-input>
         </div>
         <div class="box">
-            <g-input  error="你要写英文"></g-input>
+            <d-input  error="你要写英文"></d-input>
         </div>
         <div class="box">
-            <g-input v-model='message'></g-input>
+            <d-input v-model='message'></d-input>
             <span>{{message}}</span>
         </div>
         <div class="box">
-            <g-button :loading="loading1" @click="loading1 = !loading1">
+            <d-button :loading="loading1" @click="loading1 = !loading1">
                 按钮
-            </g-button>
-            <g-button icon="settings" :loading="true" icon-position="left">
+            </d-button>
+            <d-button icon="settings" :loading="true" icon-position="left">
                 按钮
-            </g-button>
-            <g-button icon="settings" icon-position="right">
+            </d-button>
+            <d-button icon="settings" icon-position="right">
                 按钮
-            </g-button>
-           <g-button-group>
-            <g-button icon="left">
+            </d-button>
+           <d-button-group>
+            <d-button icon="left">
                 上一页
-            </g-button>
-            <g-button>
+            </d-button>
+            <d-button>
                 更多
-            </g-button>
-            <g-button icon="right" icon-position="right">
+            </d-button>
+            <d-button icon="right" icon-position="right">
                 下一页
-            </g-button>
-           </g-button-group>
+            </d-button>
+           </d-button-group>
         </div> -->
     </div>
     <script src="./src/app.js"></script>

@@ -1,15 +1,15 @@
 <template>
-    <div class="g-sider">
+    <div class="d-sider">
         <slot></slot>
     </div>
 </template>
 <script>
 export default {
-    name: 'GuluSider'
+    name: 'DarkSider'
 }
 </script>
 <style lang="scss" scoped>
-.g-sider{
+.d-sider{
 
 }
 </style>

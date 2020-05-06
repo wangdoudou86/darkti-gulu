@@ -1,8 +1,8 @@
 <template>
-    <button class="g-button darkti2" :class="{[`icon-${iconPosition}`]: true}" 
+    <button class="d-button darkti2" :class="{[`icon-${iconPosition}`]: true}" 
     @click="$emit('click')">
-        <g-icon class="icon" v-if="icon && !loading" :name="icon"></g-icon>
-        <g-icon class="loading icon" v-if="loading"  name="loading"></g-icon>
+        <d-icon class="icon" v-if="icon && !loading" :name="icon"></d-icon>
+        <d-icon class="loading icon" v-if="loading"  name="loading"></d-icon>
         <div class="content">
             <slot></slot>
         </div>
@@ -11,9 +11,9 @@
 <script>
 import Icon from './icon.vue'
 export default {
-    name: 'GuluButton',
+    name: 'DarkButton',
     components:{
-            'g-icon': Icon
+            'd-icon': Icon
         },
     // props:['icon','iconPosition']
     props:{
@@ -43,7 +43,7 @@ export default {
             transform: rotate(360deg);
         }
     }
-    .g-button{
+    .d-button{
             height: var(--button-height);
             font-size: var(--font-size);
             padding: 0 1em;

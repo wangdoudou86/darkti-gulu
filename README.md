@@ -45,7 +45,7 @@ import 'darkti-gulu/dist/index.css'
 export default {
   name: 'App',
   components: {
-    'g-button': Button
+    'd-button': Button
   }
 ```
 

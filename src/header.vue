@@ -1,13 +1,13 @@
 <template>
-    <div class="g-header">
+    <div class="d-header">
         <slot></slot>
     </div>
 </template>
 <script>
 export default {
-    name: 'GuluHeader'
+    name: 'DarkHeader'
 }
 </script>
 <style lang="scss" scoped>
-.g-header{}
+.d-header{}
 </style>

@@ -15,7 +15,7 @@
 <script>
 import Icon from './icon'
 export default {
-    name: 'GuluInput',
+    name: 'DarkInput',
     props:{
         value: {
             type: String

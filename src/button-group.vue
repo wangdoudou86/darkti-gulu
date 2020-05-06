@@ -1,26 +1,26 @@
 <template>
-    <div class="g-button-group">
+    <div class="d-button-group">
         <slot></slot>
     </div>
 </template>
 <script>
 export default {
-    name:'GuluButtonGroup',
+    name:'DarkButtonGroup',
     mounted(){
         for(let node of this.$el.children){
             let name = node.nodeName.toLowerCase()
             if(name !== 'button'){
-                console.warn(`g-button-group 的子元素应该全是 g-button，不应该是${name}`);
+                console.warn(`d-button-group 的子元素应该全是 d-button，不应该是${name}`);
             }
         }
     }
 }
 </script>
 <style lang="scss">
-    .g-button-group{
+    .d-button-group{
         display: inline-flex;
         vertical-align: middle;
-        > .g-button{
+        > .d-button{
             border-radius: 0;
             &:not(:first-child){
                 margin-left: -1px; //解决border重合问题

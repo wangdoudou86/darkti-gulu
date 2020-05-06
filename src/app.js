@@ -12,17 +12,17 @@ import Content from './content.vue';
 import Footer from './footer.vue';
 import ToastPlugin from './plugin'
 
-Vue.component('g-button',Button)
-Vue.component('g-icon',Icon)
-Vue.component('g-button-group',ButtonGroup)
-Vue.component('g-input',Input)
-Vue.component('g-row',Row)
-Vue.component('g-col',Col)
-Vue.component('g-layout',Layout)
-Vue.component('g-header',Header)
-Vue.component('g-sider',Sider)
-Vue.component('g-content',Content)
-Vue.component('g-footer',Footer)
+Vue.component('d-button',Button)
+Vue.component('d-icon',Icon)
+Vue.component('d-button-group',ButtonGroup)
+Vue.component('d-input',Input)
+Vue.component('d-row',Row)
+Vue.component('d-col',Col)
+Vue.component('d-layout',Layout)
+Vue.component('d-header',Header)
+Vue.component('d-sider',Sider)
+Vue.component('d-content',Content)
+Vue.component('d-footer',Footer)
 Vue.use(ToastPlugin)
 
 new Vue({
