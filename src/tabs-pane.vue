@@ -8,9 +8,15 @@ export default {
     name: 'DarkTabsPane',
     props:{
         name: {
-            type: String
+            type: [String,Number],
+            required: true
         }
-    }
+    },
+    inject: ['eventBus'],
+    created(){
+        this.eventBus.$on('update:selected',(e)=>{
+        })
+    },
 }
 </script>
 <style lang="scss" scoped>

@@ -7,7 +7,12 @@
 </template>
 <script>
 export default {
-    name: 'DarkTabsHead'
+    name: 'DarkTabsHead',
+    inject: ['eventBus'],
+    created(){
+        
+        
+    }
 }
 </script>
 <style lang="scss" scoped>

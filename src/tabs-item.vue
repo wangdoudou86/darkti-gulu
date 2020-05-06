@@ -1,5 +1,5 @@
 <template>
-    <div class="d-tabs-item">
+    <div class="d-tabs-item" @click="xxx">
         <slot></slot>
     </div>
 </template>
@@ -8,11 +8,22 @@ export default {
     name: 'DarkTabsItem',
     props:{
         name: {
-            type: String
+            type: [String,Number],
+            required: true
         },
         disabled: {
             type: Boolean,
             default: false
+        }
+    },
+    inject: ['eventBus'],
+    created(){
+        this.eventBus.$on('update:selected',(e)=>{
+        })
+    },
+    methods:{
+        xxx(){
+            this.eventBus.$emit('update:selected',this.name)
         }
     }
 }

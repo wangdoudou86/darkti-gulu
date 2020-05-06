@@ -45,6 +45,7 @@ new Vue({
         selectedItem: 'society'
     },
     methods: {
+        
         inputChange(e){
             console.log(e,'eeeee')
         },

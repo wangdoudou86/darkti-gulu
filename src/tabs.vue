@@ -1,9 +1,10 @@
 <template>
-    <div class="d-tabs">
+    <div class="d-tabs" >
         <slot></slot>
     </div>
 </template>
 <script>
+import Vue from 'vue';
 export default {
     name: 'DarkTabs',
     props:{
@@ -18,6 +19,22 @@ export default {
                 return ['horizontal','vertical'].indexOf(value) >= 0
             }
         }
+    },
+    data(){
+        return {
+            eventBus: new Vue()
+        }
+    },
+    provide(){
+        return {
+            eventBus: this.eventBus
+        }
+    },
+    created(){
+        
+    },
+    methods:{
+
     }
 }
 </script>

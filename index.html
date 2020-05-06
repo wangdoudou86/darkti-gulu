@@ -67,7 +67,7 @@
 
 <body>
     <div id="app">
-        <d-tabs :selected="selectedItem" @update:selected="selectedItem = $event">
+        <d-tabs :selected.sync="selectedItem" >
             <d-tabs-head>
                 <d-tabs-item name="entertainment">娱乐</d-tabs-item>
                 <d-tabs-item name="society">社会</d-tabs-item>
