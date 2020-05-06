@@ -1,5 +1,5 @@
 <template>
-    <div class="d-tabs-item" @click="xxx">
+    <div class="d-tabs-item" @click="xxx" :class="itemClass">
         <slot></slot>
     </div>
 </template>
@@ -17,9 +17,25 @@ export default {
         }
     },
     inject: ['eventBus'],
-    created(){
-        this.eventBus.$on('update:selected',(e)=>{
+    data(){
+        return {
+            active: false
+        }
+    },
+    mounted(){
+        this.eventBus.$on('update:selected',(data)=>{
+            if(data === this.name){
+                this.active = true
+
+            }else{
+                this.active = false
+            }
         })
+    },
+    computed: {
+        itemClass(){
+            return {active: this.active}
+        }
     },
     methods:{
         xxx(){
@@ -29,11 +45,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$active-color: #409eff;
 .d-tabs-item{
     height: 100%;
-    padding: 0 1.5em;
+    padding: 0 1em;
     border: 1px solid green;
     display: flex;
     align-items: center;
+    &.active{
+        color: $active-color;
+    }
 }
 </style>

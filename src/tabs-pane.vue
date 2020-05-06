@@ -1,5 +1,5 @@
 <template>
-    <div class="d-tabs-pane">
+    <div class="d-tabs-pane" v-if="active">
         <slot></slot>
     </div>
 </template>
@@ -13,8 +13,18 @@ export default {
         }
     },
     inject: ['eventBus'],
-    created(){
-        this.eventBus.$on('update:selected',(e)=>{
+    data(){
+        return {
+            active: false
+        }
+    },
+    mounted(){
+        this.eventBus.$on('update:selected',(data)=>{
+            if(data === this.name){
+                this.active = true
+            }else{
+                this.active = false
+            }
         })
     },
 }
