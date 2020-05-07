@@ -28,7 +28,7 @@ $tabs-height: 40px;
 .d-tabs-head{
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #ddd;
     height: $tabs-height;
     position: relative;
     > .line{
@@ -38,8 +38,6 @@ $tabs-height: 40px;
         bottom: -1px;
         transition: all 200ms linear;
     }
-    > .actions-wrapper{
-        margin-left: auto;
-    }
+    > .actions-wrapper{ margin-left: auto; }
 }
 </style>

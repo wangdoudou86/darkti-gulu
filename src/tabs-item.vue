@@ -1,5 +1,5 @@
 <template>
-    <div class="d-tabs-item" @click="xxx" :class="itemClass">
+    <div class="d-tabs-item" @click="clickItem" :class="itemClass" :disabled="disabled">
         <slot></slot>
     </div>
 </template>
@@ -34,11 +34,12 @@ export default {
     },
     computed: {
         itemClass(){
-            return {active: this.active}
+            return {active: this.active, disabled: this.disabled}
         }
     },
     methods:{
-        xxx(){
+        clickItem(){
+            if(this.disabled) return
             this.eventBus.$emit('update:selected',this.name,this)
         }
     }
@@ -53,6 +54,10 @@ $active-color: #409eff;
     align-items: center;
     &.active{
         color: $active-color;
+    }
+    &.disabled{
+        color: #ddd;
+        cursor: not-allowed;
     }
 }
 </style>

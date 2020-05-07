@@ -153,19 +153,9 @@ $animation-duration: 300ms;
         line-height: 1.8;
         display: flex;
         align-items: center;
-        .message{
-            padding: 8px 0;
-        }
-        
-        .line{
-            height: 100%;
-            border: 1px solid #555;
-            margin: 0 16px;
-        }
-        .closeText{
-            flex-shrink: 0;
-            cursor: pointer;
-        }
+        .message{ padding: 8px 0; }
+        .line{ height: 100%; border: 1px solid #555; margin: 0 16px; }
+        .closeText{ flex-shrink: 0; cursor: pointer; }
     }
 
 }
