@@ -32,6 +32,10 @@ export default {
     },
     mounted(){
         const that = this
+        if(this.$children.length === 0){
+            console && console.warn 
+            && console.warn('tabs的子组件应为tabs-item和tabs-body，但你没有写子组件')
+        }
         this.$children.forEach((vm)=>{
             if(vm.$options.name === 'DarkTabsHead'){
                 vm.$children.forEach((item)=>{
@@ -41,6 +45,7 @@ export default {
                 })
             }
         })
+
     },
     methods:{
 

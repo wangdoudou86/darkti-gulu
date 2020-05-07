@@ -1,6 +1,7 @@
 <template>
-    <div class="d-tabs-item" @click="clickItem" :class="itemClass" :disabled="disabled">
-        <slot></slot>
+   <!-- 加个data-name主要是为了测试方便 -->
+    <div class="d-tabs-item" @click="clickItem" :class="itemClass" :disabled="disabled" :data-name="name">
+        <slot></slot>   
     </div>
 </template>
 <script>
@@ -23,14 +24,11 @@ export default {
         }
     },
     mounted(){
-        this.eventBus.$on('update:selected',(data)=>{
-            // if(data === this.name){
-            //     this.active = true
-            // }else{
-            //     this.active = false
-            // }
-            this.active = data === this.name
-        })
+        if(this.eventBus){  //单元测试时测出来的小问题
+            this.eventBus.$on('update:selected',(data)=>{
+                this.active = data === this.name
+            })
+        }
     },
     computed: {
         itemClass(){
@@ -40,7 +38,8 @@ export default {
     methods:{
         clickItem(){
             if(this.disabled) return
-            this.eventBus.$emit('update:selected',this.name,this)
+            this.eventBus && this.eventBus.$emit('update:selected',this.name,this)
+            this.$emit('click',this)  //这句为了单元测试检验是否触发了事件
         }
     }
 }
