@@ -31,9 +31,16 @@ export default {
         }
     },
     mounted(){
-        console.log(this.selected,'selected');
-        this.eventBus.$emit('update:selected',this.selected)
-
+        const that = this
+        this.$children.forEach((vm)=>{
+            if(vm.$options.name === 'DarkTabsHead'){
+                vm.$children.forEach((item)=>{
+                    if(item.$options.name === 'DarkTabsItem' && item.name === that.selected){
+                        that.eventBus.$emit('update:selected',that.selected, item)
+                    }
+                })
+            }
+        })
     },
     methods:{
 

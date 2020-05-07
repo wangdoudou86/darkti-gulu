@@ -24,12 +24,12 @@ export default {
     },
     mounted(){
         this.eventBus.$on('update:selected',(data)=>{
-            if(data === this.name){
-                this.active = true
-
-            }else{
-                this.active = false
-            }
+            // if(data === this.name){
+            //     this.active = true
+            // }else{
+            //     this.active = false
+            // }
+            this.active = data === this.name
         })
     },
     computed: {
@@ -39,7 +39,7 @@ export default {
     },
     methods:{
         xxx(){
-            this.eventBus.$emit('update:selected',this.name)
+            this.eventBus.$emit('update:selected',this.name,this)
         }
     }
 }
@@ -49,7 +49,6 @@ $active-color: #409eff;
 .d-tabs-item{
     height: 100%;
     padding: 0 1em;
-    border: 1px solid green;
     display: flex;
     align-items: center;
     &.active{
