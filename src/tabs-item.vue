@@ -1,6 +1,6 @@
 <template>
    <!-- 加个data-name主要是为了测试方便 -->
-    <div class="d-tabs-item" @click="clickItem" :class="itemClass" :disabled="disabled" :data-name="name">
+    <div class="d-tabs-item" @click="clickItem" :class="itemClass"  :disabled="disabled" :data-name="name">
         <slot></slot>   
     </div>
 </template>
@@ -20,7 +20,8 @@ export default {
     inject: ['eventBus'],
     data(){
         return {
-            active: false
+            active: false,
+            position: ''
         }
     },
     mounted(){
@@ -32,7 +33,8 @@ export default {
     },
     computed: {
         itemClass(){
-            return {active: this.active, disabled: this.disabled}
+            let { active, disabled, position } = this
+            return [{active: active, disabled: disabled}, position && `item-${position}`]
         }
     },
     methods:{
@@ -57,6 +59,10 @@ $active-color: #409eff;
     &.disabled{
         color: #ddd;
         cursor: not-allowed;
+    }
+    &.item-left,&.item-right{
+        padding: 0 1em;
+        height: 50px;
     }
 }
 </style>

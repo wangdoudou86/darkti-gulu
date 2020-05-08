@@ -1,5 +1,5 @@
 <template>
-    <div class="d-tabs" >
+    <div class="d-tabs" :class="positionClass">
         <slot></slot>
     </div>
 </template>
@@ -12,11 +12,11 @@ export default {
             type: String,
             required: true
         },
-        direction:{
+        position:{
             type: String,
-            default: 'horizontal',
+            default: 'top',
             validator(value){
-                return ['horizontal','vertical'].indexOf(value) >= 0
+                return ['top','bottom','left','right'].indexOf(value) >= 0
             }
         }
     },
@@ -29,6 +29,13 @@ export default {
         return {
             eventBus: this.eventBus
         }
+    },
+    computed: {
+        positionClass(){
+            let { position } = this
+            return [position && `position-${position}`]
+        }
+
     },
     mounted(){
         const that = this
@@ -45,13 +52,31 @@ export default {
                 })
             }
         })
-
-    },
-    methods:{
-
+        if(this.position === 'left' || this.position === 'right'){
+            this.$children.forEach((vm)=>{
+                if(vm.$options.name === 'DarkTabsHead'){
+                    vm.position = that.position
+                }
+            })
+        }
     }
 }
 </script>
 <style lang="scss" scoped>
-
+.d-tabs{
+    display: flex;
+    &.position-top{
+        flex-direction: column;
+    }
+    &.position-bottom{
+        flex-direction: column-reverse;
+    }
+    &.position-left{
+        flex-direction: row;
+    }
+    &.position-right{
+         flex-direction: row-reverse;
+         justify-content: space-between;
+    }
+}
 </style>
