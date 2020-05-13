@@ -70,10 +70,34 @@
         <div style="overflow: hidden; padding: 5px; border: 1px solid red;">
             <d-popover>
                 <template v-slot:content>
+                    <span>这是一段内容</span>
+                    <span>nctwayv内容</span>
+                </template>  
+                <d-button>上方出现</d-button>
+            </d-popover>
+
+            <d-popover position="bottom">
+                <template v-slot:content>
+                    <div>jkjijojhugjggjvjhvyfuyfuvjhvbnchghgjhchgcvc</div>
+                    <div>nctwayv</div>
+                </template>  
+                <d-button>下方出现</d-button>
+            </d-popover>
+
+            <d-popover position="left">
+                <template v-slot:content>
                     <div>这是一段内容</div>
                     <div>nctwayv内容</div>
                 </template>  
-                <button>点我</button>
+                <d-button>左边出现</d-button>
+            </d-popover>
+
+            <d-popover position="right">
+                <template v-slot:content>
+                    <div>这是一段内容</div>
+                    <div>nctwayv内容</div>
+                </template>  
+                <d-button>右边出现</d-button>
             </d-popover>
         </div>
         
