@@ -47,7 +47,10 @@ new Vue({
         selectedItem: 'society'
     },
     methods: {
-        
+        yyy(){
+            console.log('uuuuu');
+            
+        },
         inputChange(e){
             console.log(e,'eeeee')
         },
