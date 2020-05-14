@@ -1,6 +1,6 @@
 <template>
-    <div class="d-popover" @click="onClick" ref="popover" :class="positionClass">
-        <div class="content-wrapper" v-if="visible" ref="contentWrapper">
+    <div class="d-popover" @click="onClick" ref="popover" >
+        <div class="content-wrapper" v-if="visible" ref="contentWrapper" :class="positionClass">
             <slot name="content"></slot>
         </div>
         <span ref="triggerWrapper" style="display: inline-block;">
@@ -36,8 +36,20 @@ export default {
             const {contentWrapper, triggerWrapper} = this.$refs
             document.body.appendChild(contentWrapper)
             const {width, height, top, bottom, left, right} = triggerWrapper.getBoundingClientRect()
-            contentWrapper.style.top = top + window.scrollY + 'px'
-            contentWrapper.style.left = left + window.scrollX + 'px'
+            const {width: width2, height: height2} = contentWrapper.getBoundingClientRect()
+            if(this.position === 'top'){
+                contentWrapper.style.top = top + window.scrollY + 'px'
+                contentWrapper.style.left = left + window.scrollX + 'px'
+            }else if(this.position === 'bottom'){
+                contentWrapper.style.top = height + top + window.scrollY + 'px'
+                contentWrapper.style.left = left + window.scrollX + 'px'
+            }else if(this.position === 'left'){
+                contentWrapper.style.top = top + window.scrollY - (height2 - height)/2 + 'px'
+                contentWrapper.style.left = left + window.scrollX - width2 + 'px'
+            }else if(this.position === 'right'){
+                contentWrapper.style.top = top + window.scrollY - (height2 - height)/2 + 'px'
+                contentWrapper.style.left = left + window.scrollX + width + 'px'
+            }
         },
         documentEvent(e){
             //给document的绑定函数一个执行范围，当它发现点击的范围在内容区域时，就不做任何操作
@@ -87,13 +99,9 @@ $border-radius: 4px;
     border: 1px solid $border-color;
     border-radius: $border-radius;
     position: absolute;
-    // bottom: 100%;
-    // left: 0;
     filter: drop-shadow(0 0 3px rgba(51,51,51,0.4));
     background-color: white;
-    transform: translateY(-100%);
     padding: .5em 1em;
-    margin-top: -10px;
     max-width: 20em;
     word-break: break-all;
     &::before,&::after{
@@ -101,15 +109,64 @@ $border-radius: 4px;
         display: block;
         border: 10px solid transparent;
         position: absolute;
-        left: 10px;
     }
-    &::before{
-        border-top-color: black;
-        top: 100%;
+
+    &.position-top{
+        margin-top: -10px;
+        transform: translateY(-100%);
+        &::before,&::after{
+            left: 10px;
+        }
+        &::before{
+            border-top-color: black;
+            top: 100%;
+        }
+        &::after{
+            border-top-color: white;
+            top: calc(100% - 1px);
+        }
     }
-    &::after{
-        border-top-color: white;
-        top: calc(100% - 1px);
+    &.position-bottom{
+        margin-top: 10px;
+        &::before,&::after{
+            left: 10px;
+        }
+        &::before{
+            border-bottom-color: black;
+            bottom: 100%;
+        }
+        &::after{
+            border-bottom-color: white;
+            bottom: calc(100% - 1px);
+        }
+    }
+    &.position-left{
+        margin-left: -10px;
+        &::before,&::after{
+            top: 10px;
+        }
+        &::before{
+            border-left-color: black;
+            left: 100%;
+        }
+        &::after{
+            border-left-color: white;
+            left: calc(100% - 1px);
+        }
+    }
+    &.position-right{
+        margin-left: 10px;
+        &::before,&::after{
+            top: 10px;
+        }
+        &::before{
+            border-right-color: black;
+            right: 100%;
+        }
+        &::after{
+            border-right-color: white;
+            right: calc(100% - 1px);
+        }
     }
 }
 </style>
