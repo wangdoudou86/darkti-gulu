@@ -35,21 +35,16 @@ export default {
         positionContent(){
             const {contentWrapper, triggerWrapper} = this.$refs
             document.body.appendChild(contentWrapper)
-            const {width, height, top, bottom, left, right} = triggerWrapper.getBoundingClientRect()
-            const {width: width2, height: height2} = contentWrapper.getBoundingClientRect()
-            if(this.position === 'top'){
-                contentWrapper.style.top = top + window.scrollY + 'px'
-                contentWrapper.style.left = left + window.scrollX + 'px'
-            }else if(this.position === 'bottom'){
-                contentWrapper.style.top = height + top + window.scrollY + 'px'
-                contentWrapper.style.left = left + window.scrollX + 'px'
-            }else if(this.position === 'left'){
-                contentWrapper.style.top = top + window.scrollY - (height2 - height)/2 + 'px'
-                contentWrapper.style.left = left + window.scrollX - width2 + 'px'
-            }else if(this.position === 'right'){
-                contentWrapper.style.top = top + window.scrollY - (height2 - height)/2 + 'px'
-                contentWrapper.style.left = left + window.scrollX + width + 'px'
+            const {width, height, top, left } = triggerWrapper.getBoundingClientRect()
+            const { height: height2 } = contentWrapper.getBoundingClientRect()
+            let positionObj = {
+                top:{ top: top + window.scrollY , left: left + window.scrollX },
+                bottom:{ top: height + top + window.scrollY, left: left + window.scrollX },
+                left:{ top: top + window.scrollY - (height2 - height)/2, left: left + window.scrollX },
+                right:{ top: top + window.scrollY - (height2 - height)/2, left: left + window.scrollX + width }
             }
+            contentWrapper.style.top = positionObj[this.position].top + 'px'  
+            contentWrapper.style.left = positionObj[this.position].left + 'px'    
         },
         documentEvent(e){
             //给document的绑定函数一个执行范围，当它发现点击的范围在内容区域时，就不做任何操作
@@ -142,6 +137,7 @@ $border-radius: 4px;
     }
     &.position-left{
         margin-left: -10px;
+        transform: translateX(-100%);
         &::before,&::after{
             top: 10px;
         }
