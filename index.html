@@ -66,8 +66,8 @@
 </head>
 
 <body>
-    <div id="app" style="padding-left: 100px; padding-top: 100px;">
-        <div style="overflow: hidden; padding: 5px; border: 1px solid red;">
+    <div id="app" style="margin: 50px;">
+        <div style="overflow: hidden; margin-bottom:100px;">
             <d-popover>
                 <template v-slot:content>
                     <span>这是一段内容</span>
@@ -98,6 +98,40 @@
                     <div>nctwayv内容</div>
                 </template>  
                 <d-button>右边出现</d-button>
+            </d-popover>
+        </div>
+
+        <div style="overflow: hidden;">
+            <d-popover trigger="hover">
+                <template v-slot:content>
+                    <span>这是一段内容</span>
+                    <span>nctwayv内容</span>
+                </template>  
+                <d-button>hover上方</d-button>
+            </d-popover>
+
+            <d-popover position="bottom" trigger="hover">
+                <template v-slot:content>
+                    <div>jkjijojhugjggjvjhvyfuyfuvjhvbnchghgjhchgcvc</div>
+                    <div>nctwayv</div>
+                </template>  
+                <d-button>hover下方</d-button>
+            </d-popover>
+
+            <d-popover position="left" trigger="hover">
+                <template v-slot:content>
+                    <div>这是一段内容</div>
+                    <div>nctwayv内容</div>
+                </template>  
+                <d-button>hover左边</d-button>
+            </d-popover>
+
+            <d-popover position="right" trigger="hover">
+                <template v-slot:content>
+                    <div>这是一段内容</div>
+                    <div>nctwayv内容</div>
+                </template>  
+                <d-button>hover右边</d-button>
             </d-popover>
         </div>
         

@@ -1,5 +1,5 @@
 <template>
-    <div class="d-popover" @click="onClick" ref="popover" >
+    <div class="d-popover"  ref="popover">
         <div class="content-wrapper" v-if="visible" ref="contentWrapper" :class="positionClass">
             <slot name="content"></slot>
         </div>
@@ -18,12 +18,36 @@ export default {
             validator(value){
                 return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
             }
+        },
+        trigger: {
+            type: String,
+            default: 'click',
+            validator(value){
+                return ['click', 'hover'].indexOf(value) >= 0
+            }
         }
     },
     data(){
         return{
             visible: false
         }
+    },
+    mounted(){
+        //你在这里面添加事件，vue是不知道的，所以你需要手动在destroyed里面移除事件
+        if(this.trigger === 'click'){
+            this.$refs.popover.addEventListener('click', this.onClick)
+        }else if(this.trigger === 'hover'){
+            this.$refs.popover.addEventListener('mouseenter', this.open)
+            this.$refs.popover.addEventListener('mouseleave', this.close)
+        } 
+    },
+    destroyed(){
+        if(this.trigger === 'click'){
+            this.$refs.popover.removeEventListener('click', this.onClick)
+        }else if(this.trigger === 'hover'){
+            this.$refs.popover.removeEventListener('mouseenter', this.open)
+            this.$refs.popover.removeEventListener('mouseleave', this.close)
+        } 
     },
     computed: {
         positionClass(){
@@ -50,8 +74,6 @@ export default {
             //给document的绑定函数一个执行范围，当它发现点击的范围在内容区域时，就不做任何操作
             if(this.$refs.contentWrapper && (this.$refs.contentWrapper===e.target || this.$refs.contentWrapper.contains(e.target)) ){return}
             this.close()
-            console.log('出发啦');
-            
         },
        
         open(){
@@ -68,15 +90,13 @@ export default {
         },
         onClick(e){
             //只有点击按钮元素才执行下列操作，加上这句会比较保险
-            // if(this.$refs.triggerWrapper.contains(e.target)){
+            if(this.$refs.triggerWrapper.contains(e.target)){
                 if(this.visible){
                     this.close()
                 }else{
-                    console.log('click button');
-                    
                     this.open()
                 }
-            // }
+            }
             
         }
     }
@@ -110,6 +130,7 @@ $border-radius: 4px;
         margin-top: -10px;
         transform: translateY(-100%);
         &::before,&::after{
+            border-bottom: none;
             left: 10px;
         }
         &::before{
@@ -124,6 +145,7 @@ $border-radius: 4px;
     &.position-bottom{
         margin-top: 10px;
         &::before,&::after{
+            border-top: none;
             left: 10px;
         }
         &::before{
@@ -139,6 +161,7 @@ $border-radius: 4px;
         margin-left: -10px;
         transform: translateX(-100%);
         &::before,&::after{
+            border-right: none;
             top: 10px;
         }
         &::before{
@@ -153,6 +176,7 @@ $border-radius: 4px;
     &.position-right{
         margin-left: 10px;
         &::before,&::after{
+            border-left: none;
             top: 10px;
         }
         &::before{
