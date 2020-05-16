@@ -17,6 +17,8 @@ import TabsHead from './tabs-head';
 import TabsItem from './tabs-item';
 import TabsPane from './tabs-pane';
 import Popover from './popover';
+import Collapse from './collapse';
+import CollapseItem from './collapse-item';
 
 
 
@@ -38,13 +40,16 @@ Vue.component('d-tabs-item',TabsItem)
 Vue.component('d-tabs-body',TabsBody)
 Vue.component('d-tabs-pane',TabsPane)
 Vue.component('d-popover',Popover)
+Vue.component('d-collapse',Collapse)
+Vue.component('d-collapse-item',CollapseItem)
 
 new Vue({
     el: '#app',
     data:{
         loading1: false,
         message: 'nct',
-        selectedItem: 'society'
+        selectedItem: 'society',
+        selectedName: ['1','2']
     },
     methods: {
         yyy(){
