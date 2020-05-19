@@ -4,7 +4,7 @@
             <span class="icon" :class="{active: open}"><d-icon name="right"></d-icon></span>
             {{title}}
         </div>
-        <div class="content" v-if="open" ref="contentWrapper">
+        <div class="content" v-if="open">
             <slot></slot>
         </div>
     </div>
@@ -29,23 +29,22 @@ export default {
         }
     },
     mounted(){
-        if(!this.$slots.default){
-            this.$refs.contentWrapper.style.display = 'none'
-        }
-        this.eventBus.$on('update:seleted',(nameArr)=>{
-            nameArr.forEach((name)=>{
-                if(name === this.name){
-                    this.open = true
-                }
-            })
+        this.eventBus.$on('update:selected',(nameArr)=>{
+            if(nameArr.indexOf(this.name) >= 0){
+                this.open = true
+            }else{
+                this.open = false
+            }
         })
+        
     },
     methods:{
+        //关键点
         toggle(){
             if(this.open){
-                this.open = false
+                this.eventBus.$emit('update:removeSelected', this.name)
             }else{
-                this.open = true
+                this.eventBus.$emit('update:addSelected', this.name)
             }
         }
     }
@@ -63,8 +62,8 @@ $border-color: #ddd;
         cursor: pointer;
         > .icon{
             font-size: 12px;
-            margin-right: .3em;
-            transition: all .3s;
+            margin-right: .5em;
+            transition: all .5s;
             &.active{
                 transform: rotate(90deg);
             }

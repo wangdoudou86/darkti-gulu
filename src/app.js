@@ -49,7 +49,7 @@ new Vue({
         loading1: false,
         message: 'nct',
         selectedItem: 'society',
-        selectedName: ['1','2']
+        selectedName: ['2']
     },
     methods: {
         yyy(){
