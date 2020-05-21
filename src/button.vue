@@ -35,6 +35,14 @@ export default {
 }
 </script>
 <style lang="scss">
+$button-height: 32px;
+$font-size: 14px;
+$button-bg: white;
+$button-active-bg: #eee;
+$border-radius: 4px;
+$color: #333;
+$border-color: #999;
+$border-color-hover: #666;
     @keyframes spin{
         0%{
             transform: rotate(0deg);
@@ -44,21 +52,21 @@ export default {
         }
     }
     .d-button{
-            height: var(--button-height);
-            font-size: var(--font-size);
+            height: $button-height;
+            font-size: $font-size;
             padding: 0 1em;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            background-color: var(--button-bg);
+            border: 1px solid $border-color;
+            border-radius: $border-radius;
+            background-color: $button-bg;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             vertical-align: top;
             &:hover{   /*&表示当前的选择器*/
-                border-color: var(--border-color-hover);
+                border-color: $border-color-hover;
             } 
             &:active{  
-                background-color: var(--button-active-bg);
+                background-color: $button-active-bg;
             }
             &:focus{   
                 outline: none;
