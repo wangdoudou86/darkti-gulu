@@ -1,5 +1,5 @@
 <template>
-    <div class="d-tabs-head" :class="positionClass">
+    <div class="d-tabs-head" :class="positionClass" ref="head">
         <slot></slot>
         <div class="line" ref="line"></div> 
         <div class="actions-wrapper">
@@ -17,23 +17,15 @@ export default {
         }
     },
     mounted(){
-        const that = this
         this.eventBus.$on('update:selected',(name,vm)=>{
-            that.$nextTick(()=>{
-                let {width, height, top, right, left, bottom} = vm.$el.getBoundingClientRect()
-                if(that.position === 'left' || that.position === 'right'){
-                    that.$refs.line.style.height = `${height}px`
-                    that.$refs.line.style.top = `${top}px`
-                }else{
-                    that.$refs.line.style.width = `${width}px`
-                    that.$refs.line.style.left = `${left}px`
-                }
+            this.$nextTick(()=>{
+                this.setLinePosition(vm)
             })
         })
         this.$nextTick(()=>{
             if(this.position === 'left' || this.position === 'right'){
                 this.$children.forEach((vm)=>{
-                    vm.position = that.position
+                    vm.position = this.position
                 })
             }
         })
@@ -42,6 +34,19 @@ export default {
         positionClass(){
             let { position } = this
             return [position && `head-${position}`]
+        }
+    },
+    methods: {
+        setLinePosition(selectedVm){
+            let {width, height, top, left} = selectedVm.$el.getBoundingClientRect()
+            let {left: left2, top: top2} = this.$refs.head.getBoundingClientRect()
+            if(this.position === 'left' || this.position === 'right'){
+                this.$refs.line.style.height = `${height}px`
+                this.$refs.line.style.top = `${top - top2}px`
+            }else{
+                this.$refs.line.style.width = `${width}px`
+                this.$refs.line.style.left = `${left - left2}px`
+            }
         }
     }
 }
