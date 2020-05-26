@@ -14,7 +14,7 @@ export default {
     name: 'DarkButton',
     components:{
             'd-icon': Icon
-        },
+    },
     // props:['icon','iconPosition']
     props:{
         icon:{type: String},

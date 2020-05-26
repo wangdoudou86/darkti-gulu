@@ -115,6 +115,7 @@ $animation-duration: 300ms;
 // 做两个div，外面的居中，里面的做动画
 .wrapper{
     position: fixed;
+    z-index: 999;
     left: 50%;
     &.position-top{
         top: 0;

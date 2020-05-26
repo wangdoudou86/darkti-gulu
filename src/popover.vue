@@ -41,7 +41,7 @@ export default {
             this.$refs.popover.addEventListener('mouseleave', this.close)
         } 
     },
-    destroyed(){
+    beforeDestroy(){  //这里不能用destoryed，因为destoryed时已销毁完毕，取不到DOM的
         if(this.trigger === 'click'){
             this.$refs.popover.removeEventListener('click', this.onClick)
         }else if(this.trigger === 'hover'){

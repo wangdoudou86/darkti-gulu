@@ -10,8 +10,13 @@
     </div>
 </template>
 <script>
+import Icon from './icon.vue'
+
 export default {
     name: 'DarkCollapseItem',
+    components:{
+        'd-icon': Icon
+    },
     inject: [ 'eventBus' ],
     props: {
         title: {
@@ -54,6 +59,7 @@ export default {
 $border-color: #ddd;
 .d-collapse-item{
     > .title-wrapper{
+        box-sizing: border-box;
         border-top: 1px solid $border-color;
         padding: 6px;
         display: inline-flex;

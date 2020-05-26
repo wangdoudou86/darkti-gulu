@@ -5,11 +5,11 @@ title: 安装
 # 安装
 
 ```
-npm install darkti-gulu
+npm install dark
 ```
 
 或
 
 ```
-yarn add darkti-gulu
+yarn add dark
 ```

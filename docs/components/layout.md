@@ -5,6 +5,7 @@ title: Layout
 # 布局
 
 <ClientOnly><layout-demo-1/></ClientOnly>
+
 ```
 <d-layout style="color: white; margin-bottom:50px;">
     <d-header style="height:50px; background: #f3e1e1;">header</d-header>
@@ -14,6 +15,7 @@ title: Layout
 ```
 
 <ClientOnly><layout-demo-2/></ClientOnly>
+
 ```
 <d-layout style="color: white; margin-bottom:50px;">
     <d-header style="height:50px; background: #f3e1e1;">header</d-header>
@@ -26,6 +28,7 @@ title: Layout
 ```
 
 <ClientOnly><layout-demo-3/></ClientOnly>
+
 ```
 <d-layout style="color: white; margin-bottom:50px;">
     <d-sider style=" width: 200px; background: #7d5a5a;">sider</d-sider>
