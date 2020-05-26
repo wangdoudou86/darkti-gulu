@@ -1,6 +1,6 @@
 {
-  "name": "dark",
-  "version": "0.0.3",
+  "name": "darkti",
+  "version": "0.0.1",
   "description": "UI框架",
   "main": "dist/index.js",
   "scripts": {
