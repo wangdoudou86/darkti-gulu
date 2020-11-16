@@ -72,6 +72,7 @@ export default {
         },
         documentEvent(e){
             //给document的绑定函数一个执行范围，当它发现点击的范围在内容区域时，就不做任何操作
+            //即点击气泡卡里的内容时，不去执行close方法
             if(this.$refs.contentWrapper && (this.$refs.contentWrapper===e.target || this.$refs.contentWrapper.contains(e.target)) ){return}
             this.close()
         },

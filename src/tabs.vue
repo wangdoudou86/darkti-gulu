@@ -47,7 +47,7 @@ export default {
             if(vm.$options.name === 'DarkTabsHead'){
                 vm.$children.forEach((item)=>{
                     if(item.$options.name === 'DarkTabsItem' && item.name === that.selected){
-                        that.eventBus.$emit('update:selected',that.selected, item)
+                        that.eventBus.$emit('changeitem',that.selected, item)
                     }
                 })
             }

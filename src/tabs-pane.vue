@@ -19,12 +19,8 @@ export default {
         }
     },
     mounted(){
-        this.eventBus.$on('update:selected',(data)=>{
-            if(data === this.name){
-                this.active = true
-            }else{
-                this.active = false
-            }
+        this.eventBus.$on('changeitem',(data)=>{
+            this.active = data === this.name
         })
     },
 }

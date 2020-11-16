@@ -26,7 +26,7 @@ export default {
     },
     mounted(){
         if(this.eventBus){  //单元测试时测出来的小问题
-            this.eventBus.$on('update:selected',(data)=>{
+            this.eventBus.$on('changeitem',(data)=>{
                 this.active = data === this.name
             })
         }
@@ -40,7 +40,7 @@ export default {
     methods:{
         clickItem(){
             if(this.disabled) return
-            this.eventBus && this.eventBus.$emit('update:selected',this.name,this)
+            this.eventBus && this.eventBus.$emit('changeitem',this.name,this)
             this.$emit('click',this)  //这句为了单元测试检验是否触发了事件
         }
     }
@@ -53,6 +53,7 @@ $active-color: #409eff;
     padding: 0 1em;
     display: flex;
     align-items: center;
+    cursor: pointer;
     &.active{
         color: $active-color;
     }

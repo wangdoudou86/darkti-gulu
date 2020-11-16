@@ -1,23 +1,23 @@
 <template>
     <div class="d-collapse-item">
-        <div class="title-wrapper" @click="toggle">
-            <span class="icon" :class="{active: open}"><d-icon name="right"></d-icon></span>
+        <div class="title-wrapper" @click="onClick">
+            <span class="icon" :class="{ active: open }"><d-icon name="right" ></d-icon></span>
             {{title}}
         </div>
         <div class="content" v-if="open">
             <slot></slot>
         </div>
+
     </div>
 </template>
 <script>
 import Icon from './icon.vue'
-
 export default {
     name: 'DarkCollapseItem',
-    components:{
+    components: {
         'd-icon': Icon
     },
-    inject: [ 'eventBus' ],
+    inject: ['eventBus'],
     props: {
         title: {
             type: String,
@@ -34,22 +34,20 @@ export default {
         }
     },
     mounted(){
-        this.eventBus.$on('update:selected',(nameArr)=>{
-            if(nameArr.indexOf(this.name) >= 0){
+        this.eventBus.$on('changeselected',(names)=>{
+            if(names.includes(this.name)){
                 this.open = true
             }else{
                 this.open = false
             }
         })
-        
     },
-    methods:{
-        //关键点
-        toggle(){
+    methods: {
+        onClick(){
             if(this.open){
-                this.eventBus.$emit('update:removeSelected', this.name)
+                this.eventBus.$emit('removeitem', this.name)
             }else{
-                this.eventBus.$emit('update:addSelected', this.name)
+                this.eventBus.$emit('additem', this.name)
             }
         }
     }
@@ -59,12 +57,10 @@ export default {
 $border-color: #ddd;
 .d-collapse-item{
     > .title-wrapper{
-        box-sizing: border-box;
         border-top: 1px solid $border-color;
         padding: 6px;
-        display: inline-flex;
+        display: flex;
         align-items: center;
-        width: 100%;
         cursor: pointer;
         > .icon{
             font-size: 12px;
@@ -75,11 +71,11 @@ $border-color: #ddd;
             }
         }
     }
-    > .content{
+    .content{
         border-top: 1px solid $border-color;
         padding: 6px;
     }
-    &:first-child{
+    &:first-child {
         > .title-wrapper{
             border-top: none;
         }

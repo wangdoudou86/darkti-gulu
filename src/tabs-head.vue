@@ -17,7 +17,7 @@ export default {
         }
     },
     mounted(){
-        this.eventBus.$on('update:selected',(name,vm)=>{
+        this.eventBus.$on('changeitem',(name,vm)=>{
             this.$nextTick(()=>{
                 this.setLinePosition(vm)
             })

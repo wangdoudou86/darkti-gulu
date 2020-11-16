@@ -27,34 +27,32 @@ export default {
         }
     },
     mounted(){
-        if(this.single && this.selected.length > 1){
-            console.warn('single属性下，selected最多有一个默认项')
-            let selected = JSON.parse(JSON.stringify(this.selected))
+        let { single } = this
+        // 不要直接去改变props的值，深拷贝复制一份新的
+        let selected = JSON.parse(JSON.stringify(this.selected))
+        if(single && selected.length > 1){
+            console.error('single属性下，selected最多只能有一个默认项')
             let length = selected.length
-            selected.splice(1,length - 1)
-            this.eventBus.$emit('update:selected', selected)
-        }else{
-            this.eventBus.$emit('update:selected', this.selected)
+            selected.splice(1,length-1)
         }
-        
-        this.eventBus.$on('update:addSelected',(name)=>{
-            //因为不能直接改变props的值，所以深拷贝一下
-            let selected = JSON.parse(JSON.stringify(this.selected)) 
-            if(this.single){
+        this.eventBus.$emit('changeselected', selected)
+        // 打开关闭的item
+        this.eventBus.$on('additem',(name)=>{
+            if(single){
                 selected = [name]
             }else{
                 selected.push(name)
             }
-            this.eventBus.$emit('update:selected', selected)
-            //这句是改变此组件上selected的值，父组件上属性后面要加上.sync
-            this.$emit('update:selected', selected)
+            this.eventBus.$emit('changeselected',selected)
         })
-        this.eventBus.$on('update:removeSelected',(name)=>{
-            let selected = JSON.parse(JSON.stringify(this.selected))
-            let index = selected.indexOf(name)
-            selected.splice(index,1)
-            this.eventBus.$emit('update:selected', selected)
-            this.$emit('update:selected', selected)
+        // 关闭打开的item
+        this.eventBus.$on('removeitem', (name)=>{
+            selected.forEach((item,index,arr)=>{
+                if(item === name){
+                    arr.splice(index,1)
+                }
+            })
+            this.eventBus.$emit('changeselected',selected)
         })
         
     }
