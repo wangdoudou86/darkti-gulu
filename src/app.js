@@ -49,8 +49,7 @@ new Vue({
         loading1: false,
         message: 'nct2020',
         selectedItem: 'society',
-        selectedName: ['2'],
-        selectedItem: [],
+        selectedName: ['2']
     },
     methods: {
         yyy(){
