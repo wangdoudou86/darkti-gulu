@@ -35,15 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$button-height: 32px;
-$font-size: 14px;
-$button-bg: white;
-$button-active-bg: #eee;
-$border-radius: 4px;
-$color: #333;
-$border-color: #999;
-$border-color-hover: #666;
-
+@import './_var.scss';
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -68,7 +60,7 @@ $border-color-hover: #666;
 
     &:hover {
         /*&表示当前的选择器*/
-        border-color: $border-color-hover;
+        border-color: $border-hover-color;
     }
 
     &:active {

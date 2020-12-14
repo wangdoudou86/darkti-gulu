@@ -1,43 +1,60 @@
 <template>
-    <div>
-        <div class="box">
-            <d-button :loading="loading1" @click="loading1 = !loading1">
-                按钮
-            </d-button>
-            <d-button icon="settings" :loading="true" icon-position="left">
-                按钮
-            </d-button>
-            <d-button icon="settings" icon-position="right">
-                按钮
-            </d-button>
-        </div>
-
-        <d-collapse :selected.sync="selectedName" single>
-            <d-collapse-item title="标题1" name="1">这是内容1</d-collapse-item>
-            <d-collapse-item title="标题2" name="2">这是内容2</d-collapse-item>
-            <d-collapse-item title="标题3" name="3">这是内容3</d-collapse-item>
-        </d-collapse>   
-
+    <div class="box">
+        <d-cascader :source="source"></d-cascader>
+        <!-- <d-input value="wayv"></d-input> -->
     </div>
 </template>
 <script>
-import Button from './button.vue';
-import Collapse from './collapse';
-import CollapseItem from './collapse-item';
+import Cascader from './cascader.vue';
+import CascaderItems from './cascader-items.vue';
+import Input from './input.vue';
 export default {
     components: {
-        'd-button': Button,
-        'd-collapse': Collapse,
-        'd-collapse-item': CollapseItem
+        'd-cascader': Cascader,
+        'd-cascader-items': CascaderItems,
+        'd-input': Input
     },
     data(){
         return {
-            selectedName: ['2']
+            source: [
+                {
+                    name: '浙江',
+                    children: [{
+                        name: '杭州',
+                        children: [{
+                            name: '上城区'
+                        },{
+                            name: '下城区'
+                        },{
+                            name: '江干区'
+                        }]
+                    }]
+                },{
+                    name: '四川',
+                    children: [{
+                        name: '成都',
+                        children: [{
+                            name: '青羊区'
+                        },{
+                            name: '武侯区'
+                        },{
+                            name: '金牛区'
+                        }]
+                    },{
+                        name: '自贡',
+                        children: [{
+                            name: '大安区'
+                        }]
+                    }]
+                }
+            ],
+            
         }
     }
 }
 </script>
 <style lang="scss" scoped>
+
     *,*::before,*::after {
             margin: 0;
             padding: 0;
