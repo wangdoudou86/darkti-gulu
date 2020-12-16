@@ -1,6 +1,8 @@
 <template>
     <div class="box">
-        <d-cascader :source="source"></d-cascader>
+        <p>11111</p>
+        <d-cascader :source="source" popoverHeight="100px"></d-cascader>
+        <p>22222</p>
         <!-- <d-input value="wayv"></d-input> -->
     </div>
 </template>

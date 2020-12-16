@@ -1,5 +1,5 @@
 <template>
-  <div class="d-cascader-items">
+  <div class="d-cascader-items" :style="{ height: height }">
     <!-- {{sourceItem}} -->
     <div class="left" >
       <div class="label" v-for="(item,index) in items" :key="index" @click="selectedItem = item">
@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <dark-cascader-items :items="rightItems"></dark-cascader-items>
+      <dark-cascader-items :items="rightItems" :height="height"></dark-cascader-items>
     </div>
   </div>
 </template>
@@ -23,6 +23,9 @@ export default {
   props: {
     items: {
       type: Array
+    },
+    height: {
+      type: String
     }
   },
   computed: {
@@ -40,11 +43,12 @@ export default {
 </script>
 <style lang='scss' scoped>
 .d-cascader-items{
-  
+  height: 200px;
   display: flex;
   align-items: flex-start;
   .left{
-    border: 1px solid blue;
+    height: 100%;
+    border: 1px solid red;
   }
   .right{
     margin-top: -1px; //让右边都往上1像素，因为有个边框
