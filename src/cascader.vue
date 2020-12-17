@@ -3,7 +3,7 @@
     <div class="trigger" @click="popoverVisible = !popoverVisible">
       <slot></slot>
     </div>
-    <div class="popover" v-if="popoverVisible">
+    <div class="popoverWrapper" v-if="popoverVisible">
       <d-cascader-items :items="source" :height="popoverHeight" ></d-cascader-items>
     </div>
   </div>
@@ -38,15 +38,15 @@ export default {
   .trigger{
     width: 200px;
     height: $height;
-    border: 1px solid orange;
+    border: 1px solid $border-color;
   }
-  .popover{
-    // height: 200px;
-    border: 1px solid purple;
+  .popoverWrapper{
     position: absolute;
     top: 100%;
     left: 0;
     background-color: #ffffff;
+    margin-top: 2px;
+    @extend %box-shadow;
   }
 }
 </style>

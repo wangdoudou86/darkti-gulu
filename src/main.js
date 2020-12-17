@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Demo from "./demo.vue";
-
+import './public.css';
 Vue.config.productionTip = false;
 
 new Vue({

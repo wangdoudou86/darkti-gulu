@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <p>11111</p>
-        <d-cascader :source="source" popoverHeight="100px"></d-cascader>
+        <d-cascader :source="source" popoverHeight="150px"></d-cascader>
         <p>22222</p>
         <!-- <d-input value="wayv"></d-input> -->
     </div>
@@ -56,21 +56,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
-    *,*::before,*::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --font-size: 14px;
-        }
-
-        body {
-            font-size: var(--font-size);
-        }
-        .box{
-            margin: 20px;
-        }
+.box{
+    margin: 50px;
+}
 </style>

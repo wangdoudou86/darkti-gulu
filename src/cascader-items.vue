@@ -2,8 +2,9 @@
   <div class="d-cascader-items" :style="{ height: height }">
     <!-- {{sourceItem}} -->
     <div class="left" >
-      <div class="label" v-for="(item,index) in items" :key="index" @click="selectedItem = item">
+      <div class="label" v-for="(item,index) in items" :key="index" @click="leftSelected = item">
         {{item.name}}
+        <Icon name="right" class="icon-right" v-if="item.children"></Icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
@@ -13,12 +14,16 @@
 </template>
 
 <script>
+import Icon from './icon.vue';
 export default {
   name: 'DarkCascaderItems',
   data(){ 
     return {
-      selectedItem: null
+      leftSelected: null
    }
+  },
+  components: {
+    Icon
   },
   props: {
     items: {
@@ -30,8 +35,8 @@ export default {
   },
   computed: {
     rightItems(){
-      if(this.selectedItem && this.selectedItem.children){
-        return this.selectedItem.children
+      if(this.leftSelected && this.leftSelected.children){
+        return this.leftSelected.children
       }else{
         return null
       }
@@ -42,16 +47,29 @@ export default {
 
 </script>
 <style lang='scss' scoped>
+@import './_var.scss';
 .d-cascader-items{
   height: 200px;
   display: flex;
   align-items: flex-start;
   .left{
     height: 100%;
-    border: 1px solid red;
+    padding: 10px 14px;
+    .label{
+      padding-bottom: 8px;
+    }
+    .label:last-child{
+      padding-bottom: 0;
+    }
+    .icon-right{
+      font-size: 12px;
+      fill: #666;
+      margin-left: .5em;
+    }
   }
   .right{
-    margin-top: -1px; //让右边都往上1像素，因为有个边框
+    border-left: 1px solid $border-color-light;
   }
+  
 }
 </style>
