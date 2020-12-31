@@ -1,8 +1,6 @@
 <template>
     <div class="box">
-        <p>11111</p>
-        <d-cascader :source="source" popoverHeight="150px"></d-cascader>
-        <p>22222</p>
+        <d-cascader :source="source" popoverHeight="150px" :selected="selected" @update:selected="selected = $event"></d-cascader>
         <!-- <d-input value="wayv"></d-input> -->
     </div>
 </template>
@@ -50,7 +48,7 @@ export default {
                     }]
                 }
             ],
-            
+            selected: []  //为什么这里要传一个selected，因为以防万一有默认的展示
         }
     }
 }

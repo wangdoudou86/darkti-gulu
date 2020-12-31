@@ -1,14 +1,14 @@
 <template>
   <div class="d-cascader-items" :style="{ height: height }">
-    <!-- {{sourceItem}} -->
     <div class="left" >
-      <div class="label" v-for="(item,index) in items" :key="index" @click="leftSelected = item">
+      {{level}}
+      <div class="label" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
         {{item.name}}
         <Icon name="right" class="icon-right" v-if="item.children"></Icon>
       </div>
     </div>
     <div class="right" v-if="rightItems">
-      <dark-cascader-items :items="rightItems" :height="height"></dark-cascader-items>
+      <dark-cascader-items :items="rightItems" :height="height" :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></dark-cascader-items>
     </div>
   </div>
 </template>
@@ -17,11 +17,11 @@
 import Icon from './icon.vue';
 export default {
   name: 'DarkCascaderItems',
-  data(){ 
-    return {
-      leftSelected: null
-   }
-  },
+  // data(){ 
+  //   return {
+  //     leftSelected: null
+  //  }
+  // },
   components: {
     Icon
   },
@@ -31,15 +31,38 @@ export default {
     },
     height: {
       type: String
+    },
+    selected: {   
+      type: Array,
+      detault(){
+        return []
+      }
+    },
+    level: { 
+      type: Number,
+      default: 0
     }
   },
   computed: {
     rightItems(){
-      if(this.leftSelected && this.leftSelected.children){
-        return this.leftSelected.children
+      let currentSelected = this.selected[this.level]
+      if(currentSelected && currentSelected.children){
+        return currentSelected.children
       }else{
         return null
       }
+    }
+  },
+  methods: {
+    //点击某一项时，把这一项放进seleted数组中，并通知它的爸爸
+    onClickLabel(item){
+      console.log(item, 'itemmmmmm')
+      let copy = JSON.parse(JSON.stringify(this.selected))
+      copy[this.level] = item
+      this.$emit('update:selected', copy)
+    },
+    onUpdateSelected(newSelected){
+      this.$emit('update:selected', newSelected)
     }
   }
 
