@@ -17,11 +17,7 @@
 import Icon from './icon.vue';
 export default {
   name: 'DarkCascaderItems',
-  // data(){ 
-  //   return {
-  //     leftSelected: null
-  //  }
-  // },
+  
   components: {
     Icon
   },
@@ -56,11 +52,13 @@ export default {
   methods: {
     //点击某一项时，把这一项放进seleted数组中，并通知它的爸爸
     onClickLabel(item){
-      console.log(item, 'itemmmmmm')
       let copy = JSON.parse(JSON.stringify(this.selected))
       copy[this.level] = item
+      copy.splice(this.level+1)   //每次点击item后，就把selected中this.level后面的项给删去
       this.$emit('update:selected', copy)
     },
+    //递归的组件上也需要监听update:selected事件，且再触发update:selected事件并把传来的selected再传出去
+    //就像是一级一级传递消息，第一级传给第二级，第二级收到消息后，告诉第一级它收到了，并把消息再传给第一级
     onUpdateSelected(newSelected){
       this.$emit('update:selected', newSelected)
     }
