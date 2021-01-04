@@ -1,7 +1,6 @@
 <template>
   <div class="d-cascader-items" :style="{ height: height }">
     <div class="left" >
-      {{level}}
       <div class="label" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
         {{item.name}}
         <Icon name="right" class="icon-right" v-if="item.children"></Icon>

@@ -1,7 +1,6 @@
 <template>
     <div class="box">
-        <d-cascader :source="source" popoverHeight="150px" :selected="selected" @update:selected="selected = $event"></d-cascader>
-        <!-- <d-input value="wayv"></d-input> -->
+        <d-cascader :source="source" popoverHeight="150px" :selected.sync="selected"></d-cascader>
     </div>
 </template>
 <script>
@@ -11,8 +10,7 @@ import Input from './input.vue';
 export default {
     components: {
         'd-cascader': Cascader,
-        'd-cascader-items': CascaderItems,
-        'd-input': Input
+        'd-cascader-items': CascaderItems
     },
     data(){
         return {
