@@ -42,10 +42,10 @@ export default {
     rightItems(){
       let currentSelected = this.selected[this.level]
       if(currentSelected && currentSelected.children){
-        return currentSelected.children
-      }else{
-        return null
-      }
+          return currentSelected.children
+        }else{
+          return null
+        }
     }
   },
   methods: {
@@ -75,6 +75,7 @@ export default {
   .left{
     height: 100%;
     padding: 10px 14px;
+    overflow: auto;
     .label{
       padding-bottom: 8px;
     }
