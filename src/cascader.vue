@@ -30,6 +30,9 @@ export default {
       detault(){
         return []
       }
+    },
+    loadData: {
+      type: Function
     }
 
   },
@@ -42,6 +45,54 @@ export default {
     // 监听到cascader-item的update:selected事件，并再次触发update:selected并把选择的项传给他的爸爸
     onUpdateSelected(newSelected){
       this.$emit('update:selected', newSelected)
+      let lastItem = newSelected[newSelected.length-1]
+      // 在source中找出刚刚点击的这一项对象
+      // 简单查找，就是第一层，直接找id，不去children里找id
+      let simplest = (children, id)=>{
+        return children.filter(item => item.id === id)[0]
+      }
+      //需要去children里找id
+      let complex = (children, id)=>{
+        let noChildren = []
+        let hasChildren = []
+        //有children和没有children的分开来找
+        children.forEach((item) => {
+          if(item.children){
+            hasChildren.push(item)
+          }else{
+            noChildren.push(item)
+          }
+        })
+        let found = simplest(noChildren, id)
+        if(found){
+          return found
+        }else{
+          //对有children的还是先进行一次简单查找
+          found = simplest(hasChildren, id)
+          if(found){
+            return found
+          }else{
+            //不能用forEach，因为forEach不能跳出整个循环
+            for(let i = 0; i < hasChildren.length; i++){
+              found = complex(hasChildren[i].children, id)
+              if(found){
+                return found
+              }
+            }
+            return undefined
+          }
+        }
+      }
+
+      let updateSource = (res)=>{
+        let copy = JSON.parse(JSON.stringify(this.source))
+        let toUpdate =  complex(copy, lastItem.id)
+        // this.$set(toUpdate, 'children', res)
+        // 不是vue上的属性，就可以不用set
+        toUpdate.children = res
+        this.$emit('update:source', copy)
+      }
+      this.loadData(lastItem, updateSource)
     }
   }
 

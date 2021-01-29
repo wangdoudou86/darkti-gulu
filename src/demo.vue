@@ -1,6 +1,6 @@
 <template>
     <div class="box">
-        <d-cascader :source="source" popoverHeight="250px" :selected.sync="selected" @update:selected="xxx"></d-cascader>
+        <d-cascader :source.sync="source" popoverHeight="250px" :selected.sync="selected" :load-data="loadData"></d-cascader>
     </div>
 </template>
 <script>
@@ -33,14 +33,11 @@ export default {
         })
     },
     methods: {
-        xxx(){
-            const that = this
-            ajax(this.selected[0].id).then((res)=>{
-                let lastLevelSelected = that.source.filter(item => item.id === that.selected[0].id)[0]
-                // lastLevelSelected.children = res
-                that.$set(lastLevelSelected,'children', res)  // 一定要用$set来添加属性！！！！！！
+        loadData({id}, updateSource){
+            ajax(id).then((res)=>{
+                updateSource(res)
             })
-        }
+        },
     }
 }
 </script>

@@ -3,10 +3,10 @@
     <div class="left" >
       <div class="label" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
         {{item.name}}
-        <Icon name="right" class="icon-right" v-if="item.children"></Icon>
+        <Icon name="right" class="icon-right" v-if="item.children && item.children.length > 0"></Icon>
       </div>
     </div>
-    <div class="right" v-if="rightItems">
+    <div class="right" v-if="rightItems && rightItems.length > 0">
       <dark-cascader-items :items="rightItems" :height="height" :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></dark-cascader-items>
     </div>
   </div>
@@ -40,12 +40,22 @@ export default {
   },
   computed: {
     rightItems(){
-      let currentSelected = this.selected[this.level]
-      if(currentSelected && currentSelected.children){
-          return currentSelected.children
-        }else{
-          return null
+      if(this.selected[this.level]){
+        let currentSelected = this.items.filter(item => item.name === this.selected[this.level].name)
+        //记住currentSelected是个数组！！！！！
+        if(currentSelected && currentSelected[0].children && currentSelected[0].children.length>0){
+          return currentSelected[0].children
         }
+      }
+      // 因为computed依赖selected和level
+      // 传回的selected[0]里没有children属性，所以不会有rightItems
+      // 因为children是直接往source里放，去更新source的，点击的item放进selected里时，它是还没有children属性的
+      // let currentSelected = this.selected[this.level]
+      // if(currentSelected && currentSelected.children){
+      //   return currentSelected.children
+      // }else{
+      //   return null
+      // }
     }
   },
   methods: {
