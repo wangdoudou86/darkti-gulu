@@ -2,12 +2,12 @@
   <div class="d-cascader-items" :style="{ height: height }">
     <div class="left" >
       <div class="label" v-for="(item,index) in items" :key="index" @click="onClickLabel(item)">
-        {{item.name}}
-        <Icon name="right" class="icon-right" v-if="item.children && item.children.length > 0"></Icon>
+        <span class="name">{{item.name}}</span>
+        <Icon name="right" class="icon-right" v-if="rightArrowVisible(item)"></Icon>
       </div>
     </div>
     <div class="right" v-if="rightItems && rightItems.length > 0">
-      <dark-cascader-items :items="rightItems" :height="height" :level="level+1" :selected="selected" @update:selected="onUpdateSelected"></dark-cascader-items>
+      <dark-cascader-items :items="rightItems" :height="height" :level="level+1" :load-data="loadData" :selected="selected" @update:selected="onUpdateSelected"></dark-cascader-items>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
   components: {
     Icon
   },
+
   props: {
     items: {
       type: Array
@@ -36,6 +37,9 @@ export default {
     level: { 
       type: Number,
       default: 0
+    },
+     loadData: {
+      type: Function
     }
   },
   computed: {
@@ -56,11 +60,13 @@ export default {
       // }else{
       //   return null
       // }
-    }
+    },
+    
   },
   methods: {
     //点击某一项时，把这一项放进seleted数组中，并通知它的爸爸
     onClickLabel(item){
+      this.isSelected = item.name
       let copy = JSON.parse(JSON.stringify(this.selected))
       copy[this.level] = item
       copy.splice(this.level+1)   //每次点击item后，就把selected中this.level后面的项给删去
@@ -70,6 +76,9 @@ export default {
     //就像是一级一级传递消息，第一级传给第二级，第二级收到消息后，告诉第一级它收到了，并把消息再传给第一级
     onUpdateSelected(newSelected){
       this.$emit('update:selected', newSelected)
+    },
+    rightArrowVisible(item){
+      return this.loadData ? !item.isLeaf : item.children
     }
   }
 
@@ -84,19 +93,26 @@ export default {
   align-items: flex-start;
   .left{
     height: 100%;
-    padding: 10px 14px;
     overflow: auto;
     .label{
-      padding-bottom: 8px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      &.isSelected{
+        color: orange;
+      }
+      &:hover{
+        background-color: #eee;
+      }
+      .icon-right{
+        font-size: 12px;
+        fill: #666;
+        margin-left: 1em;
+      }
     }
-    .label:last-child{
-      padding-bottom: 0;
-    }
-    .icon-right{
-      font-size: 12px;
-      fill: #666;
-      margin-left: .5em;
-    }
+    
   }
   .right{
     border-left: 1px solid $border-color-light;
