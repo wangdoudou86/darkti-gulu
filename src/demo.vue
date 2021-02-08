@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+
 import Cascader from './cascader.vue';
 import CascaderItems from './cascader-items.vue';
 import db from './db.js';
