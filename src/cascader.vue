@@ -4,7 +4,13 @@
       {{ result  }}
     </div>
     <div class="popoverWrapper" v-if="popoverVisible">
-      <d-cascader-items :items="source" :height="popoverHeight" :load-data="loadData" :selected="selected" @update:selected="onUpdateSelected"></d-cascader-items>
+      <d-cascader-items 
+        :items="source" 
+        :height="popoverHeight" 
+        :load-data="loadData" 
+        :loading-item="loadingItem" 
+        :selected="selected" 
+        @update:selected="onUpdateSelected"></d-cascader-items>
     </div>
   </div>
 </template>
@@ -14,7 +20,8 @@ import CascaderItems from './cascader-items.vue';
 export default {
   data(){ 
     return {
-      popoverVisible: false
+      popoverVisible: false,
+      loadingItem: {}
    }
   },
   components: {
@@ -85,6 +92,7 @@ export default {
       }
 
       let updateSource = (res)=>{
+        this.loadingItem = {}
         let copy = JSON.parse(JSON.stringify(this.source))
         let toUpdate =  complex(copy, lastItem.id)
         // this.$set(toUpdate, 'children', res)
@@ -92,8 +100,10 @@ export default {
         toUpdate.children = res
         this.$emit('update:source', copy)
       }
-      if(!lastItem.isLeaf){
-        this.loadData && this.loadData(lastItem, updateSource)
+      if(!lastItem.isLeaf && this.loadData){
+        //当updateSource这个函数被调用了，说明已经加载完成了，这时菊花可以消失了
+        this.loadData(lastItem, updateSource)
+        this.loadingItem = lastItem
       }
     },
     onClick(e){
@@ -142,6 +152,7 @@ export default {
     left: 0;
     background-color: #ffffff;
     margin-top: 2px;
+    z-index: 1;
     @extend %box-shadow;
   }
 }

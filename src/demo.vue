@@ -1,6 +1,8 @@
 <template>
     <div class="box">
-        <d-cascader :source.sync="source" popoverHeight="250px" :selected.sync="selected" :load-data="loadData"></d-cascader>
+        <div>
+            <d-cascader :source.sync="source" popoverHeight="250px" :selected.sync="selected" :load-data="loadData"></d-cascader>
+        </div>
     </div>
 </template>
 <script>
@@ -10,18 +12,20 @@ import CascaderItems from './cascader-items.vue';
 import db from './db.js';
 function ajax(id = 0){
     return new Promise((resolve, reject)=>{
-        let result = db.filter((item) =>  {
-            return item.parent_id == id
-        })
-        //返回isLeaf来判断它是不是最后一级
-        result.forEach((node) => {
-            if(db.some(item => node.id === item.parent_id )){
-                node.isLeaf = false
-            }else{
-                node.isLeaf = true
-            }
-        })
-        resolve(result)
+        setTimeout(()=>{
+            let result = db.filter((item) =>  {
+                return item.parent_id == id
+            })
+            //返回isLeaf来判断它是不是最后一级
+            result.forEach((node) => {
+                if(db.some(item => node.id === item.parent_id )){
+                    node.isLeaf = false
+                }else{
+                    node.isLeaf = true
+                }
+            })
+            resolve(result)
+        },3000)
     })
 }
 export default {

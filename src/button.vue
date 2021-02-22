@@ -36,16 +36,6 @@ export default {
 
 <style lang="scss" scoped>
 @import './_var.scss';
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 .d-button {
     height: $button-height;
     font-size: $font-size;
