@@ -12,13 +12,13 @@ export default {
 }
 
 function createToast(Vue,message,toastOptions,onClose){
-    let Constructor = Vue.extend(Toast)
-    let toast = new Constructor({
+    let Constructor = Vue.extend(Toast)  //先生成包含Toast的一个Vue构造函数
+    let toast = new Constructor({    
         propsData: toastOptions
     })
     toast.$slots.default = message 
     toast.$mount()  //slot要放在mount之前
     toast.$on('close',onClose)
     document.body.appendChild(toast.$el)
-    return toast
+    return toast  //toast是一个包含了Toast和其他options的Vue实例
 }
