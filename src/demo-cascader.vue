@@ -8,13 +8,14 @@
         :load-data="loadData"
       ></d-cascader>
     </div>
-
   </div>
 </template>
 <script>
 import Cascader from "./cascader.vue";
 import CascaderItems from "./cascader-items.vue";
-import db from "./db.js";
+import db from "./db.js";  //返回的数据结构需统一
+
+// 获取所选择节点的整体数据（这块应该是请求后端给的接口，来得到相应的数据）
 function ajax(id = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -23,7 +24,7 @@ function ajax(id = 0) {
       });
       //返回isLeaf来判断它是不是最后一级
       result.forEach((node) => {
-        if (db.some((item) => node.id === item.parent_id)) {
+        if (db.some((item) => node.id === item.parent_id )) {
           node.isLeaf = false;
         } else {
           node.isLeaf = true;
@@ -40,7 +41,6 @@ export default {
   },
   data() {
     return {
-      arr: ["winwin", "lucas", "ten", "kun", "yangyang", "xiaojun", "herndry"],
       source: [], // 动态加载
       selected: [], //为什么这里要传一个selected，因为以防万一有默认的展示
       // source: [
@@ -93,6 +93,8 @@ export default {
   },
 
   methods: {
+
+    // 加载数据
     loadData({ id }, updateSource) {
       ajax(id).then((res) => {
         updateSource(res);
