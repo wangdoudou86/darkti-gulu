@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import DSlides from "./slides";
-import DSlidesItem from "./slides-item";
+import DSlides from "../slides";
+import DSlidesItem from "../slides-item";
 export default {
   components: {
     "d-slides": DSlides,

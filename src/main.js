@@ -1,6 +1,6 @@
 import Vue from "vue";
-// import Democascader from "./demo-cascader.vue";
-import Demoslides from "./demo-slides.vue";
+// import Democascader from "./demo/demo-cascader.vue";
+import Demoslides from "./demo/demo-slides.vue";
 import './public.css';
 Vue.config.productionTip = false;
 

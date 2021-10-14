@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  name: 'DarkSlides',
   props: {
     selected: {
       type: String,
@@ -42,12 +43,11 @@ export default {
     };
   },
   mounted() {
-    console.log(this.autoplay,'this.autoplay');
     this.updateChildren();
     if (this.autoplay){
       this.playAutomatically();
     }
-    this.childrenLength = this.$children.length
+    this.childrenLength = this.items.length
   },
   updated() {
     this.updateChildren();
@@ -61,8 +61,14 @@ export default {
       let index = this.names.indexOf(this.selected)
       return index === -1 ? 0 : index
     },
+
+    // 为了防止子组件里用户写进去不是SlidesItem的组件
+    items(){
+      let arr = this.$children.filter(vm => vm.$options.name === 'DarkSlidesItem')
+      return arr.length > 0 ? arr : console.warn('请引入slides-item组件')
+    },
     names(){
-      return this.$children.map((vm) => vm.name);
+      return this.items.map(vm => vm.name);
     },
 
   },
@@ -152,14 +158,14 @@ export default {
 
     // 得到初次进来时的selected
     getSelected() {
-      return this.selected || this.$children[0].name;
+      return this.selected || this.items[0].name;
     },
     
     updateChildren() {
       let selected = this.getSelected();
       // slides-item有自己的data——selected
       // 要通知到每个slides-item，现在选中的是哪个slides-item
-      this.$children.forEach((vm) => {
+      this.items.forEach((vm) => {
         let reverse = this.lastSelectedIndex >= 0 && this.lastSelectedIndex > this.selectedIndex
 
         // 开启自动轮播时
