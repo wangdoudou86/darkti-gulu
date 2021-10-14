@@ -21,7 +21,7 @@ export default {
       type: String,
     },
     // 是否自动轮播
-    autoPlay: {
+    autoplay: {
       type: Boolean,
       default: true,
     },
@@ -42,8 +42,9 @@ export default {
     };
   },
   mounted() {
+    console.log(this.autoplay,'this.autoplay');
     this.updateChildren();
-    if (this.autoPlay){
+    if (this.autoplay){
       this.playAutomatically();
     }
     this.childrenLength = this.$children.length
@@ -72,7 +73,9 @@ export default {
     },
     // 鼠标离开轮播图
     onMouseLeave(){
-      this.playAutomatically()
+      if(this.autoplay){
+        this.playAutomatically()
+      }
     },
 
     pause(){
@@ -111,7 +114,7 @@ export default {
       this.$nextTick(()=>{
         this.isTouched = false
         // 触摸后若原本开启了自动播放那就让它立马再次开启
-          if (this.autoPlay){
+          if (this.autoplay){
             this.playAutomatically()
           }
       })
