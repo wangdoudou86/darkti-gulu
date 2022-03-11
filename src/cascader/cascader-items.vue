@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import Icon from './icon.vue';
+import Icon from '../icon/icon.vue';
 export default {
   name: 'DarkCascaderItems',
   
@@ -102,7 +102,7 @@ export default {
 
 </script>
 <style lang='scss' scoped>
-@import './_var.scss';
+@import '../_var.scss';
 .d-cascader-items{
   height: 200px;
   display: flex;

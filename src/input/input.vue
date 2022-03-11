@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Icon from './icon.vue'
+import Icon from '../icon/icon.vue'
 export default {
     name: 'DarkInput',
     props: {
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './_var.scss';
+@import '../_var.scss';
 .wrapper {
     font-size: $font-size;
 

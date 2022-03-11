@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Icon from './icon.vue'
+import Icon from '../icon/icon.vue'
 export default {
     name: 'DarkButton',
     props: {
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './_var.scss';
+@import '../_var.scss';
 .d-button {
     height: $button-height;
     font-size: $font-size;

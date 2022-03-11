@@ -18,6 +18,7 @@
 export default {
   name: 'DarkSlides',
   props: {
+    //当前轮播图的index
     selected: {
       type: String,
     },
@@ -25,6 +26,11 @@ export default {
     autoplay: {
       type: Boolean,
       default: true,
+    },
+    //间隔时长
+    duration: {
+      type: Number,
+      default: 4
     },
     // 是否显示面板指示点
     dots: {
@@ -136,9 +142,9 @@ export default {
         if(newIndex === this.names.length){ newIndex = 0 }
         this.$emit('update:selected', this.names[newIndex])
         this.isClicked = false
-        this.timerId = setTimeout(run, 4000)
+        this.timerId = setTimeout(run, this.duration*1000)
       }
-      this.timerId = setTimeout(run, 4000)
+      this.timerId = setTimeout(run, this.duration*1000)
     },
 
     // 点击小圆圈来切换图片

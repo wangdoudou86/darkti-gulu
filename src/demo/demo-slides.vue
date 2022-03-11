@@ -1,6 +1,6 @@
 <template>
   <div>
-    <d-slides class="wrapper" :selected.sync="selected">
+    <d-slides class="wrapper" :selected.sync="selected" :duration="6">
       <d-slides-item name="hi">
         <div class="box">111</div>
       </d-slides-item>
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import DSlides from "../slides";
-import DSlidesItem from "../slides-item";
+import DSlides from "../slides/slides";
+import DSlidesItem from "../slides/slides-item";
 export default {
   components: {
     "d-slides": DSlides,

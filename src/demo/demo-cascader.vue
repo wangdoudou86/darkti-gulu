@@ -11,8 +11,7 @@
   </div>
 </template>
 <script>
-import Cascader from "../cascader.vue";
-import CascaderItems from "../cascader-items.vue";
+import Cascader from "../cascader/cascader.vue";
 import db from "../../test/fixtures/db.js";  //返回的数据结构需统一
 
 // 获取所选择节点的整体数据（这块应该是请求后端给的接口，来得到相应的数据）
@@ -37,7 +36,6 @@ function ajax(id = 0) {
 export default {
   components: {
     "d-cascader": Cascader,
-    "d-cascader-items": CascaderItems,
   },
   data() {
     return {
