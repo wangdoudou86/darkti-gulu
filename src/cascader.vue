@@ -1,5 +1,5 @@
 <template>
-  <div class="d-cascader" ref="cascader">
+  <div class="d-cascader" v-click-outside="close">
     <div class="trigger" @click="toggle" >
       {{ result  }}
     </div>
@@ -17,13 +17,15 @@
 
 <script>
 import CascaderItems from './cascader-items.vue';
+import ClickOutside from './click-outsite';
 export default {
   data(){ 
     return {
-      popoverVisible: false,
+      popoverVisible: false, 
       loadingItem: {}
    }
   },
+  directives: { ClickOutside },
   components: {
     'd-cascader-items': CascaderItems
   },
@@ -48,6 +50,7 @@ export default {
       return this.selected.map( item => item.name ).join('/')
     }
   },
+
   methods: {
     // 监听到cascader-item的update:selected事件，并再次触发update:selected并把选择的项传给他的爸爸
     onUpdateSelected(newSelected){
@@ -106,24 +109,14 @@ export default {
         this.loadingItem = lastItem
       }
     },
-    onClick(e){
-      let { cascader } = this.$refs
-      if(cascader === e.target || cascader.contains(e.target)) return
-      this.close()
-    },
     open(){
       this.popoverVisible = true
-      setTimeout(()=>{
-        document.addEventListener('click', this.onClick)
-      },0)
-      
     },
     close(){
       this.popoverVisible = false
-      document.removeEventListener('click', this.onClick)
     },
     toggle(){
-      if(this.popoverVisible === true){
+      if(this.popoverVisible){
         this.close()
       }else{
         this.open()
